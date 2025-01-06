@@ -8,6 +8,7 @@ import 'package:storeapp/Widgets/CustomTextField.dart';
 import 'package:storeapp/Widgets/Custom_Button.dart';
 import 'package:storeapp/data/constant.dart';
 import 'package:storeapp/helper/SnaceBar.dart';
+import 'package:storeapp/services/Firebase/SignUpFirebase.dart';
 
 class Signupscreen extends StatefulWidget {
   const Signupscreen({super.key});
@@ -19,7 +20,7 @@ class Signupscreen extends StatefulWidget {
 class _SignupscreenState extends State<Signupscreen> {
   GlobalKey<FormState> formstate1 = GlobalKey();
 
-  String? email, password;
+  String? email, password, username;
   bool isloading = false;
   @override
   Widget build(BuildContext context) {
@@ -80,6 +81,9 @@ class _SignupscreenState extends State<Signupscreen> {
                             color: ContaierColor,
                             size: 22,
                           ),
+                          onChanged: (p0) {
+                            username = p0;
+                          },
                           validator: (p0) {
                             if (p0!.isEmpty) {
                               return "Can't be empty";
@@ -145,7 +149,12 @@ class _SignupscreenState extends State<Signupscreen> {
                               try {
                                 isloading = true;
                                 setState(() {});
-                                await authentication();
+                                // await authentication();
+                                await signUpWithEmail(
+                                    email: email!,
+                                    password: password!,
+                                    username: username!,
+                                    phoneNumber: "01020237163");
                                 isloading = false;
                                 setState(() {});
 
@@ -156,7 +165,7 @@ class _SignupscreenState extends State<Signupscreen> {
                                     // ignore: use_build_context_synchronously
                                     context,
                                     "LoginScreen");
-                              // ignore: unused_catch_clause
+                                // ignore: unused_catch_clause
                               } on FirebaseAuthException catch (e) {
                                 ShowMessage(
                                     // ignore: use_build_context_synchronously
@@ -180,12 +189,12 @@ class _SignupscreenState extends State<Signupscreen> {
     );
   }
 
-  Future<void> authentication() async {
+  /*Future<void> authentication() async {
     var auth = FirebaseAuth.instance;
     // ignore: unused_local_variable
     UserCredential user = await auth.createUserWithEmailAndPassword(
       email: email!,
       password: password!,
     );
-  }
+  }*/
 }

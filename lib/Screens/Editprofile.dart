@@ -1,11 +1,14 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:storeapp/Widgets/InputTextField.dart';
 import 'package:storeapp/data/constant.dart';
 
+// ignore: must_be_immutable
 class Editprofile extends StatelessWidget {
-  const Editprofile({super.key});
-
+  Editprofile({super.key, this.img});
+  String? img;
   @override
   Widget build(BuildContext context) {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -41,9 +44,11 @@ class Editprofile extends StatelessWidget {
                   width: 150,
                   height: 150,
                   child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
-                      child: const Image(
-                          image: AssetImage("images/adel (2).jpg"))),
+                    borderRadius: BorderRadius.circular(100),
+                    child: img!.isNotEmpty
+                        ? Image.asset(img!, fit: BoxFit.cover)
+                        : const Icon(Icons.person, size: 100),
+                  ),
                 ),
                 Positioned(
                   bottom: 0,
@@ -53,11 +58,11 @@ class Editprofile extends StatelessWidget {
                     height: 35,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(100),
-                        color: maincolor),
-                    child: const Icon(
-                      LineAwesomeIcons.camera_solid,
+                        color: BackgroundColor),
+                    child: Icon(
+                      LineAwesomeIcons.pencil_alt_solid,
                       size: 20,
-                      color: Colors.black,
+                      color: TextIconColor,
                     ),
                   ),
                 )

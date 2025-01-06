@@ -16,10 +16,10 @@ class NavigationbarStatus extends StatefulWidget {
 class _NavigationbarState extends State<NavigationbarStatus> {
   int _selectedIndex = 0;
   List<Widget> pagess = [
-     Homepage(),
-   
+    Homepage(),
+
     const Searchpage(),
-     const UpdateProductPage(),
+    const UpdateProductPage(),
     // const Profilescreen(),
   ];
 
@@ -27,19 +27,19 @@ class _NavigationbarState extends State<NavigationbarStatus> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: MotionTabBar(
-        labels: const ["Home", "Search","Items"],
+        labels: const ["Home", "Search", "Items"],
         initialSelectedTab: "Home",
         icons: const [
           Icons.home,
-            FontAwesomeIcons.searchengin, // Icon for Home tab
+          FontAwesomeIcons.searchengin, // Icon for Home tab
           FontAwesomeIcons.cartShopping, // Icon for Search tab
-          
+
           // Icons.person,     // Icon for Profile tab
         ],
         tabSize: 50,
-        tabBarColor: TextIconColor,
-        tabSelectedColor: TextIconColor,
-        tabIconColor:IconColor,
+        tabBarColor: BackgroundColor,
+        tabSelectedColor: BackgroundColor,
+        tabIconColor: IconColor,
         textStyle: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.w500,

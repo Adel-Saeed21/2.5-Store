@@ -25,9 +25,15 @@ class _HomepageState extends State<Homepage> {
         title: Text(
           "2.5Store",
           style: TextStyle(
-              color: TextIconColor, fontSize: 25, fontWeight: FontWeight.bold),
+              color: const Color.fromARGB(255, 17, 105, 177),
+              fontSize: 25,
+              fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
+        leading: Icon(
+          Icons.shopping_basket,
+          color: TextIconColor,
+        ),
         actions: [
           IconButton(
             onPressed: () {
@@ -124,7 +130,7 @@ class _HomepageState extends State<Homepage> {
           ),
           Container(
             margin: const EdgeInsets.only(top: 40),
-            height: 480,
+            height: MediaQuery.of(context).size.height - 330,
             decoration: BoxDecoration(
                 color: ContaierColor,
                 borderRadius: const BorderRadius.only(

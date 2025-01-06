@@ -9,11 +9,12 @@ Color BackColor = const Color(0xff5E686D);
 Color Tcolor = const Color(0xffFAFFC5);
 
 // ignore: non_constant_identifier_names
-Color ContaierColor = const Color(0xffE16A54);
-Color BackgroundColor = const Color(0xff9F5255);
-Color TextIconColor = const Color(0xffF39E60);
-String tprofileHeading = "Adel saeed";
-String tprofileEmail = "";
+Color ContaierColor = const Color(0xff2C3E50);
+Color BackgroundColor = const Color(0xff2D2D2D);
+Color TextIconColor = const Color(0xffffffff);
+String? tprofileHeading;
+String? tprofileEmail;
+String? tProfilePicture;
 
 List<SalesCard> salescards = [
   SalesCard(
