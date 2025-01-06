@@ -3,15 +3,15 @@ import 'package:storeapp/Widgets/salesCard.dart';
 import 'package:storeapp/data/Images.dart';
 
 Color maincolor = const Color(0xff3A3960);
-Color Secondcolor = Colors.white;
-Color IconColor = const Color(0xffECDFCC);
-Color BackColor = const Color(0xff5E686D);
-Color Tcolor = const Color(0xffFAFFC5);
+Color secondcolor = Colors.white;
+Color iconColor = const Color(0xffECDFCC);
+Color backColor = const Color(0xff5E686D);
+Color tcolor = const Color(0xffFAFFC5);
 
 // ignore: non_constant_identifier_names
 Color ContaierColor = const Color(0xff2C3E50);
-Color BackgroundColor = const Color(0xff2D2D2D);
-Color TextIconColor = const Color(0xffffffff);
+Color backgroundColor = const Color(0xff2D2D2D);
+Color textIconColor = const Color(0xffffffff);
 String? tprofileHeading;
 String? tprofileEmail;
 String? tProfilePicture;
@@ -47,17 +47,4 @@ List<String> RealmadridImage = [
 List<String> ahlyList = [Imagee.Ahly1, Imagee.Ahly2, Imagee.Ahly3];
 List<String> arsenalList = [Imagee.Arsenal1, Imagee.Arsenal2];
 
-class Containercolor {
-  int? num;
-  String? image;
-  Containercolor(String img, int x) {
-    this.num = x;
-    this.image = img;
-  }
-}
-
-List<Containercolor> alahly = [
-  Containercolor(Imagee.Ahly1, 1),
-  Containercolor(Imagee.Ahly2, 2),
-  Containercolor(Imagee.Ahly3, 3)
-];
+TextEditingController emailControler = TextEditingController();

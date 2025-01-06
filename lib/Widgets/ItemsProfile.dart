@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -22,7 +24,7 @@ class ItemsProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    var tcolor = isDark ? Secondcolor : textColor;
+    var tcolor = isDark ? secondcolor : textColor;
     if (isDark && endIcon == false) {
       tcolor = textColor;
     }
@@ -52,7 +54,7 @@ class ItemsProfile extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
                   color: Colors.grey.withOpacity(0.1)),
-              child: Icon(
+              child:const Icon(
                 LineAwesomeIcons.angle_right_solid,
                 size: 18.0,
                 color: Colors.grey,

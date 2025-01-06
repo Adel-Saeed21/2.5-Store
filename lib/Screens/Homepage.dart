@@ -19,10 +19,10 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: BackgroundColor,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: BackgroundColor,
-        title: Text(
+        backgroundColor: backgroundColor,
+        title:const Text(
           "2.5Store",
           style: TextStyle(
               color: const Color.fromARGB(255, 17, 105, 177),
@@ -32,7 +32,7 @@ class _HomepageState extends State<Homepage> {
         centerTitle: true,
         leading: Icon(
           Icons.shopping_basket,
-          color: TextIconColor,
+          color: textIconColor,
         ),
         actions: [
           IconButton(
@@ -41,7 +41,7 @@ class _HomepageState extends State<Homepage> {
             },
             icon: Icon(
               Icons.person,
-              color: TextIconColor,
+              color: textIconColor,
               size: 30,
             ),
           )
@@ -63,36 +63,30 @@ class _HomepageState extends State<Homepage> {
                   ),
                   suffixIcon: Icon(
                     FontAwesomeIcons.listCheck,
-                    color: TextIconColor,
+                    color: textIconColor,
                   ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: TextIconColor)),
+                      borderSide: BorderSide(color: textIconColor)),
                   hintText: "Search",
                   hintStyle: const TextStyle(color: Colors.grey),
                   enabled: true,
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: TextIconColor)),
+                      borderSide: BorderSide(color: ContaierColor)),
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: TextIconColor))),
+                      // ignore: prefer_const_constructors
+                      borderSide: BorderSide(color: ContaierColor))),
             ),
           ),
           const SizedBox(
             height: 20,
           ),
           Text(
-            "More than customers,\nYou are part of our family",
-            style: TextStyle(
-                color: TextIconColor,
-                fontSize: 16,
-                fontWeight: FontWeight.w500),
-          ),
-          Text(
             "Categories",
             style: TextStyle(
-                color: TextIconColor,
+                color: textIconColor,
                 fontSize: 25,
                 fontWeight: FontWeight.bold),
           ),

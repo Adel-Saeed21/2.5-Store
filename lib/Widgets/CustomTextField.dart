@@ -9,14 +9,14 @@ class CustomTextField extends StatefulWidget {
       required this.text,
       this.iconData,
       required this.state,
-      required this.dIcon,
+      this.dIcon,
       this.onChanged});
   Function(String)? onChanged;
   final String? Function(String?)? validator;
   final String text;
   final IconData? iconData;
   final bool state;
-  final Icon dIcon;
+  final Icon? dIcon;
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
 }
@@ -29,7 +29,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
     return TextFormField(
       onChanged: widget.onChanged,
       obscureText: widget.state ? !show : show,
-      style: TextStyle(color: TextIconColor),
+      style: TextStyle(color: textIconColor),
       maxLines: 1,
       validator: widget.validator,
       decoration: InputDecoration(
@@ -38,7 +38,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
             ? IconButton(
                 icon: Icon(
                   show ? Icons.visibility_off : Icons.visibility,
-                  color: TextIconColor,
+                  color: textIconColor,
                 ),
                 onPressed: () {
                   setState(() {
@@ -48,11 +48,11 @@ class _CustomTextFieldState extends State<CustomTextField> {
               )
             : Icon(
                 widget.iconData,
-                color: TextIconColor, // Normal icon when state is false
+                color: textIconColor, // Normal icon when state is false
               ),
         prefixIcon: widget.dIcon,
         labelText: widget.text,
-        labelStyle: TextStyle(color: TextIconColor, fontSize: 18),
+        labelStyle: TextStyle(color: textIconColor, fontSize: 18),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(color: Colors.red),

@@ -17,11 +17,11 @@ class inputTextfiled extends StatelessWidget {
       decoration: InputDecoration(
         label: Text(
           username!,
-          style: TextStyle(color: TextIconColor, fontSize: 18),
+          style: TextStyle(color: textIconColor, fontSize: 18),
         ),
         prefixIcon: Icon(
           iconData,
-          color: TextIconColor,
+          color: textIconColor,
         ),
         errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),

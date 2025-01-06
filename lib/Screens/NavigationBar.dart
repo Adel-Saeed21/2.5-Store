@@ -37,9 +37,9 @@ class _NavigationbarState extends State<NavigationbarStatus> {
           // Icons.person,     // Icon for Profile tab
         ],
         tabSize: 50,
-        tabBarColor: BackgroundColor,
-        tabSelectedColor: BackgroundColor,
-        tabIconColor: IconColor,
+        tabBarColor: backgroundColor,
+        tabSelectedColor: backgroundColor,
+        tabIconColor: iconColor,
         textStyle: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.w500,

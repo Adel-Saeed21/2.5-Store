@@ -61,7 +61,7 @@ class TPromoSLider extends StatelessWidget {
                 SmallContainerHome(
                   padding: 5,
                   color: controller.currentIndex == i
-                      ? TextIconColor
+                      ? textIconColor
                       : Colors.grey,
                 )
             ],

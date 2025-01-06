@@ -16,16 +16,16 @@ class Profile extends StatelessWidget {
     var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
 
     return Scaffold(
-      backgroundColor: BackgroundColor,
+      backgroundColor: backgroundColor,
       appBar: AppBar(
-        backgroundColor: BackgroundColor,
+        backgroundColor: backgroundColor,
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
           },
           icon: Icon(
             LineAwesomeIcons.angle_left_solid,
-            color: TextIconColor,
+            color: textIconColor,
           ),
         ),
         title: Center(
@@ -34,7 +34,7 @@ class Profile extends StatelessWidget {
             style: TextStyle(
               fontSize: 25,
               fontWeight: FontWeight.bold,
-              color: TextIconColor,
+              color: textIconColor,
             ),
           ),
         ),
@@ -43,7 +43,7 @@ class Profile extends StatelessWidget {
             onPressed: () {},
             icon: Icon(
               isDark ? LineAwesomeIcons.moon : LineAwesomeIcons.sun,
-              color: TextIconColor,
+              color: textIconColor,
             ),
           ),
         ],
@@ -102,7 +102,7 @@ class Profile extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
-                        color: TextIconColor,
+                        color: textIconColor,
                       ),
                     ),
                     Text(
@@ -110,7 +110,7 @@ class Profile extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w400,
-                        color: TextIconColor,
+                        color: textIconColor,
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -122,6 +122,7 @@ class Profile extends StatelessWidget {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => Editprofile(
                                     img: profileImage,
+                                    email: email,
                                   )));
                         },
                         style: ElevatedButton.styleFrom(
@@ -133,7 +134,7 @@ class Profile extends StatelessWidget {
                           "Edit profile",
                           style: TextStyle(
                             fontSize: 20,
-                            color: TextIconColor,
+                            color: textIconColor,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

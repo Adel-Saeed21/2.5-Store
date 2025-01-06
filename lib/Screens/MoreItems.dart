@@ -19,15 +19,15 @@ class Moreitems extends StatelessWidget {
             Navigator.pop(context);
           },
           icon: const Icon(Icons.arrow_back_ios_new_outlined),
-          color: TextIconColor,
+          color: textIconColor,
         ),
-        backgroundColor: BackgroundColor,
+        backgroundColor: backgroundColor,
         title: Text(
           "Products",
-          style: TextStyle(color: TextIconColor),
+          style: TextStyle(color: textIconColor),
         ),
       ),
-      backgroundColor: BackgroundColor,
+      backgroundColor: backgroundColor,
       body: Padding(
           padding: const EdgeInsets.only(left: 8, right: 8, top: 2),
           child: FutureBuilder<List<Productmodel>>(

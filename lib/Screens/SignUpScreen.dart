@@ -30,18 +30,18 @@ class _SignupscreenState extends State<Signupscreen> {
       inAsyncCall: isloading,
       child: Scaffold(
           appBar: AppBar(
-            backgroundColor: BackgroundColor,
+            backgroundColor: backgroundColor,
             leading: IconButton(
                 onPressed: () {
                   Navigator.pop(context);
                 },
                 icon: Icon(
                   FontAwesomeIcons.circleArrowLeft,
-                  color: BackgroundColor,
+                  color: backgroundColor,
                   size: 30,
                 )),
           ),
-          backgroundColor: BackgroundColor,
+          backgroundColor: backgroundColor,
           body: Container(
             padding: const EdgeInsets.all(18),
             child: ListView(
@@ -52,7 +52,7 @@ class _SignupscreenState extends State<Signupscreen> {
                 Text(
                   "Sign Up",
                   style: TextStyle(
-                      color: TextIconColor,
+                      color: textIconColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 30),
                 ),

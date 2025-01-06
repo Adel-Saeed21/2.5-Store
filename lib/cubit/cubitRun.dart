@@ -9,6 +9,7 @@ class Cubitrun extends Cubit<cubitState> {
   bool state1 = false;
   bool state2 = false;
   bool state3 = false;
+  String imageGalary="";
   void changeImage(String x) {
     imageChose = x;
     emit(TshirtChange());
@@ -31,5 +32,10 @@ bool getStateByIndex(int index) {
     state3 = index == 3;
 
     emit(UpdateContainerColor());
+  }
+
+
+  void Changeimages(){
+
   }
 }

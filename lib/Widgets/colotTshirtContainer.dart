@@ -26,10 +26,10 @@ class ColorTshirtContainer extends StatelessWidget {
             decoration: BoxDecoration(
                 border: Border.all(
                   width: 2,
-                  color: changecolor ? Colors.red : IconColor,
+                  color: changecolor ? Colors.red : iconColor,
                 ),
                 borderRadius: BorderRadius.circular(10),
-                color: IconColor),
+                color: iconColor),
             child: Image.asset(imageName),
           ),
         ),

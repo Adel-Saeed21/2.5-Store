@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
       inAsyncCall: loading,
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: BackgroundColor,
+          backgroundColor: backgroundColor,
           leading: IconButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -44,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 size: 30,
               )),
         ),
-        backgroundColor: BackgroundColor,
+        backgroundColor: backgroundColor,
         body: Container(
           padding: const EdgeInsets.all(18),
           child: ListView(
@@ -75,7 +75,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         state: false,
                         dIcon: Icon(
                           Icons.email_rounded,
-                          color: TextIconColor,
+                          color: textIconColor,
                         ),
                         validator: (p0) {
                           if (p0!.isEmpty) {
@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       CustomTextField(
                         dIcon: Icon(
                           Icons.lock,
-                          color: TextIconColor,
+                          color: textIconColor,
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
@@ -122,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Text(
                                 "Forget Password?",
                                 style: TextStyle(
-                                    color: TextIconColor, fontSize: 13),
+                                    color: textIconColor, fontSize: 13),
                               ))
                         ],
                       ),

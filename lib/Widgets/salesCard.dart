@@ -46,7 +46,7 @@ class SalesCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Card(
-              shadowColor: TextIconColor,
+              shadowColor: textIconColor,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -89,7 +89,7 @@ class SalesCard extends StatelessWidget {
                     child: Text(
                       "$sales\$",
                       style: TextStyle(
-                          color: BackgroundColor,
+                          color: backgroundColor,
                           fontSize: 15,
                           fontWeight: FontWeight.bold),
                     ),

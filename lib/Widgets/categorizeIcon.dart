@@ -23,7 +23,7 @@ class CategoriezIcon extends StatelessWidget {
               width: 60,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(40),
-                color: TextIconColor,
+                color: textIconColor,
               ),
               child: ClipRRect(
                   borderRadius: BorderRadius.circular(40),
@@ -34,7 +34,7 @@ class CategoriezIcon extends StatelessWidget {
           Text(
             text,
             style: TextStyle(
-                color: TextIconColor,
+                color: textIconColor,
                 fontSize: 16,
                 fontWeight: FontWeight.w600),
           )

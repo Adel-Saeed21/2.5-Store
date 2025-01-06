@@ -24,7 +24,7 @@ class Itemdetails extends StatelessWidget {
         builder: (context, State) {
           return Scaffold(
             appBar: AppBar(
-              backgroundColor: BackgroundColor,
+              backgroundColor: backgroundColor,
               leading: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -37,7 +37,7 @@ class Itemdetails extends StatelessWidget {
                   Text(
                     "Details",
                     style: TextStyle(
-                        color: IconColor,
+                        color: iconColor,
                         fontSize: 22,
                         fontWeight: FontWeight.bold),
                   ),
@@ -56,7 +56,7 @@ class Itemdetails extends StatelessWidget {
                 ],
               ),
             ),
-            backgroundColor: BackgroundColor,
+            backgroundColor: backgroundColor,
             body: ListView(
               padding: const EdgeInsets.only(top: 10, left: 15, right: 10),
               children: [
@@ -65,11 +65,11 @@ class Itemdetails extends StatelessWidget {
                     height: 320,
                     width: 320,
                     decoration: BoxDecoration(
-                      color: IconColor,
+                      color: iconColor,
                       borderRadius: BorderRadius.circular(30),
                       boxShadow: [
                         BoxShadow(
-                          color: IconColor,
+                          color: iconColor,
                           spreadRadius: 2,
                           blurRadius: 2,
                           offset: const Offset(3, 3),
@@ -124,7 +124,7 @@ class Itemdetails extends StatelessWidget {
                 ),
                 Text(
                   "Size Avialable",
-                  style: TextStyle(color: TextIconColor, fontSize: 16),
+                  style: TextStyle(color: textIconColor, fontSize: 16),
                 ),
                 const Row(
                   children: [
@@ -165,7 +165,7 @@ class Itemdetails extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w600,
-                                    color: TextIconColor),
+                                    color: textIconColor),
                               ))),
                     ),
                     const SizedBox(
@@ -185,7 +185,7 @@ class Itemdetails extends StatelessWidget {
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w600,
-                                    color: TextIconColor),
+                                    color: textIconColor),
                               ))),
                     )
                   ],
@@ -209,7 +209,7 @@ class OutButtonSize extends StatelessWidget {
     return OutlinedButton(
         style: OutlinedButton.styleFrom(
             side: BorderSide(
-              color: TextIconColor,
+              color: textIconColor,
               width: 2,
             ),
             padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
@@ -219,7 +219,7 @@ class OutButtonSize extends StatelessWidget {
         child: Text(
           size,
           style: TextStyle(
-              color: TextIconColor, fontWeight: FontWeight.w500, fontSize: 14),
+              color: textIconColor, fontWeight: FontWeight.w500, fontSize: 14),
         ));
   }
 }

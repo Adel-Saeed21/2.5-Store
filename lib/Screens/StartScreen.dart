@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 
 import 'package:storeapp/data/constant.dart';
@@ -15,7 +17,7 @@ class _StartScreenState extends State<StartScreen> {
     //var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     // var backcolor = isDark ? Colors.black : Colors.white;
     return Scaffold(
-      backgroundColor: BackgroundColor,
+      backgroundColor: backgroundColor,
       body: ListView(children: [
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -41,7 +43,7 @@ class _StartScreenState extends State<StartScreen> {
               child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                       side: BorderSide(
-                        color: TextIconColor,
+                        color: textIconColor,
                         width: 2,
                       ),
                       padding: const EdgeInsets.symmetric(
@@ -54,7 +56,7 @@ class _StartScreenState extends State<StartScreen> {
                   child: Text(
                     "Log In",
                     style: TextStyle(
-                        color: TextIconColor,
+                        color: textIconColor,
                         fontWeight: FontWeight.bold,
                         fontSize: 15),
                   )),
@@ -69,7 +71,7 @@ class _StartScreenState extends State<StartScreen> {
                 onPressed: () {
                   Navigator.pushNamed(context, "Signup");
                 },
-                color: TextIconColor,
+                color: textIconColor,
                 child: const Text(
                   "Sign Up",
                   style: TextStyle(
