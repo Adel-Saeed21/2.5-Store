@@ -72,10 +72,10 @@ class _StartScreenState extends State<StartScreen> {
                   Navigator.pushNamed(context, "Signup");
                 },
                 color: textIconColor,
-                child: const Text(
+                child: Text(
                   "Sign Up",
                   style: TextStyle(
-                      color: Colors.white,
+                      color: ContaierColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),
