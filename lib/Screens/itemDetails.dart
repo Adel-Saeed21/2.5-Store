@@ -29,7 +29,10 @@ class Itemdetails extends StatelessWidget {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: const Icon(Icons.arrow_back_ios_new)),
+                  icon: Icon(
+                    Icons.arrow_back_ios_new,
+                    color: textIconColor,
+                  )),
               title: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,

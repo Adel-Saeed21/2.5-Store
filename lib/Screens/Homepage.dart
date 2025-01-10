@@ -93,32 +93,35 @@ class _HomepageState extends State<Homepage> {
           const SizedBox(
             height: 10,
           ),
-          const Row(
+          Row(
             children: [
               CategoriezIcon(
                 text: "Tech",
-                data: "images/digitals.jpg",
+                data: "images/digitals.jpg", listItems:techList,
               ),
               // SizedBox(
               //   width: MediaQuery.of(context).size.width - 400,
               // ),
-              CategoriezIcon(
+               CategoriezIcon(
                 text: "Sports",
                 data: "images/shirt_sports/sports.jpg",
+                listItems:techList,
               ),
               // SizedBox(
               //   width: MediaQuery.of(context).size.width - 400,
               // ),
-              CategoriezIcon(
+               CategoriezIcon(
                 text: "Man",
                 data: "images/man.jpg",
+                listItems:techList
               ),
               // SizedBox(
               //   width: MediaQuery.of(context).size.width - 400,
               // ),
-              CategoriezIcon(
+               CategoriezIcon(
                 text: "Woman",
                 data: "images/woman.jpg",
+                listItems:techList
               ),
             ],
           ),

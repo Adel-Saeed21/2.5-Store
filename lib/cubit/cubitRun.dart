@@ -9,12 +9,15 @@ class Cubitrun extends Cubit<cubitState> {
   bool state1 = false;
   bool state2 = false;
   bool state3 = false;
-  String imageGalary="";
+  String imageGalary = "";
+
+  bool isPasswordValid = false;
   void changeImage(String x) {
     imageChose = x;
     emit(TshirtChange());
   }
-bool getStateByIndex(int index) {
+
+  bool getStateByIndex(int index) {
     switch (index) {
       case 1:
         return state1;
@@ -26,6 +29,7 @@ bool getStateByIndex(int index) {
         return false;
     }
   }
+
   void changeContainerColor(int index) {
     state1 = index == 1;
     state2 = index == 2;
@@ -34,8 +38,10 @@ bool getStateByIndex(int index) {
     emit(UpdateContainerColor());
   }
 
-
-  void Changeimages(){
-
+  void setPasswordValidation(bool isValid) {
+    isPasswordValid = isValid;
+    emit(PasswordValidationState());
   }
+
+  void Changeimages() {}
 }

@@ -56,6 +56,7 @@ class Profile extends StatelessWidget {
           } else if (snapshot.hasData && snapshot.data != null) {
             var userData = snapshot.data!;
             String username = userData['username'] ?? 'N/A';
+            // ignore: unused_local_variable
             String phone = userData['phoneNumber'] ?? 'N/A';
             String email = userData['email'] ?? 'N/A';
             String profileImage = userData['profileImage'] ?? '';
@@ -74,7 +75,11 @@ class Profile extends StatelessWidget {
                             borderRadius: BorderRadius.circular(100),
                             child: profileImage.isNotEmpty
                                 ? Image.asset(profileImage, fit: BoxFit.cover)
-                                : const Icon(Icons.person, size: 100),
+                                : const Icon(
+                                    Icons.person,
+                                    size: 100,
+                                    color: Colors.white,
+                                  ),
                           ),
                         ),
                         // Positioned(

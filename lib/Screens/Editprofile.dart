@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
+
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:storeapp/cubit/cubitRun.dart';
 import 'package:storeapp/cubit/cubitState.dart';
@@ -62,7 +62,8 @@ class Editprofile extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100),
                         child: img!.isNotEmpty
                             ? Image.asset(img!, fit: BoxFit.cover)
-                            : const Icon(Icons.person, size: 100),
+                            : const Icon(Icons.person,
+                                size: 100, color: Colors.white),
                       ),
                     ),
                     Positioned(
@@ -86,7 +87,7 @@ class Editprofile extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 50,
+                  height: 60,
                 ),
                 Padding(
                   padding:
@@ -95,17 +96,7 @@ class Editprofile extends StatelessWidget {
                       key: formstate1,
                       child: Column(
                         children: [
-                          // DynamicTextfiled(
-                          //   keyboard: TextInputType.text,
-                          //   sizee: 500,
-                          //   word: "Full Name",
-                          //   validator: (p0) {
-                          //     if (p0!.isEmpty) {
-                          //       return "Can't be empty";
-                          //     }
-                          //     return null;
-                          //   },
-                          // ),
+                         
                           DynamicTextfiled(
                             keyboard: TextInputType.text,
                             sizee: 500,

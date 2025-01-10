@@ -49,6 +49,7 @@ dependencies:
   flutter_bloc: ^8.1.6
   cloud_firestore: ^5.6.0
   image_picker: ^1.1.2
+  flutter_pw_validator: ^1.6.0
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,9 @@ flutter:
     - images/
     - images/PromoImages/
     - images/shirt_sports/
+    - images/techImages/
+    - images/womanImage/
+    
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

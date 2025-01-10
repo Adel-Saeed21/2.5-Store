@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:storeapp/data/constant.dart';
 
 // ignore: must_be_immutable
@@ -10,16 +11,18 @@ class CustomTextField extends StatefulWidget {
       this.iconData,
       required this.state,
       this.dIcon,
-      this.onChanged});
+      this.onChanged, this.mycontroller, });
   Function(String)? onChanged;
   final String? Function(String?)? validator;
   final String text;
   final IconData? iconData;
   final bool state;
   final Icon? dIcon;
+final TextEditingController? mycontroller;
   @override
   _CustomTextFieldState createState() => _CustomTextFieldState();
 }
+
 
 class _CustomTextFieldState extends State<CustomTextField> {
   bool show = false;
@@ -32,6 +35,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       style: TextStyle(color: textIconColor),
       maxLines: 1,
       validator: widget.validator,
+      controller:widget.mycontroller,
       decoration: InputDecoration(
         // Conditional rendering of icon
         suffixIcon: widget.state
