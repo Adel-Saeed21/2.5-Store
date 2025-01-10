@@ -19,6 +19,7 @@ class Itemdetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<Cubitrun>(context).changeImage(imageess);
+
     return BlocConsumer<Cubitrun, cubitState>(
         // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
         builder: (context, State) {
@@ -61,7 +62,7 @@ class Itemdetails extends StatelessWidget {
             ),
             backgroundColor: backgroundColor,
             body: ListView(
-              padding: const EdgeInsets.only(top: 10, left: 15, right: 10),
+              padding: const EdgeInsets.only(top: 15, left: 15, right: 10),
               children: [
                 Align(
                   child: Container(
@@ -88,14 +89,14 @@ class Itemdetails extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
                 const Text(
                   "Original sports T-shirt\n A comfortable sports t-shirt with breathable, moisture-wicking fabric, perfect for workouts and running with a stylish and practical look.",
                   style: TextStyle(color: Colors.white, fontSize: 12),
                 ),
                 const SizedBox(
-                  height: 30,
+                  height: 20,
                 ),
                 const Text(
                   "Colors available",
@@ -123,7 +124,7 @@ class Itemdetails extends StatelessWidget {
                   }),
                 ),
                 const SizedBox(
-                  height: 20,
+                  height: 10,
                 ),
                 Text(
                   "Size Avialable",
@@ -149,7 +150,7 @@ class Itemdetails extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 20,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -162,9 +163,14 @@ class Itemdetails extends StatelessWidget {
                           width: 150,
                           height: 40,
                           child: TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                BlocProvider.of<Cubitrun>(context)
+                                    .DetailsBookButton();
+                              },
                               child: Text(
-                                "Book",
+                                BlocProvider.of<Cubitrun>(context).IsBooked
+                                    ? "Unbooked"
+                                    : "Book",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w600,

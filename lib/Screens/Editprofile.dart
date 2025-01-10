@@ -21,7 +21,7 @@ class Editprofile extends StatelessWidget {
     // var backcolor = isDark ? Colors.black : Colors.white;
     // var textcolor = isDark ? Colors.white : Colors.black;
     GlobalKey<FormState> formstate1 = GlobalKey();
-
+    double screenWidth = MediaQuery.of(context).size.width;
     return BlocConsumer<Cubitrun, cubitState>(
       builder: (context, state) {
         return Scaffold(
@@ -46,146 +46,148 @@ class Editprofile extends StatelessWidget {
           ),
           backgroundColor: backgroundColor,
           body: SingleChildScrollView(
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      decoration: BoxDecoration(
-                          color: ContaierColor, shape: BoxShape.circle),
-                      width: 150,
-                      height: 150,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: img!.isNotEmpty
-                            ? Image.asset(img!, fit: BoxFit.cover)
-                            : const Icon(Icons.person,
-                                size: 100, color: Colors.white),
+            child: Padding(
+              padding: const EdgeInsets.only(right: 10.0, left: 10),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 30,
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: ContaierColor, shape: BoxShape.circle),
+                        width: 150,
+                        height: 150,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(100),
+                          child: img!.isNotEmpty
+                              ? Image.asset(img!, fit: BoxFit.cover)
+                              : const Icon(Icons.person,
+                                  size: 100, color: Colors.white),
+                        ),
                       ),
-                    ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: Container(
-                          width: 35,
-                          height: 35,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(100),
-                              color: textIconColor),
-                          child: IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              LineAwesomeIcons.pencil_alt_solid,
-                              size: 20,
-                              color: ContaierColor,
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                            width: 35,
+                            height: 35,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                color: textIconColor),
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                LineAwesomeIcons.pencil_alt_solid,
+                                size: 20,
+                                color: ContaierColor,
+                              ),
+                            )),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 60,
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+                    child: Form(
+                        key: formstate1,
+                        child: Column(
+                          children: [
+                            DynamicTextfiled(
+                              keyboard: TextInputType.text,
+                              sizee: 500,
+                              contr: email_controler,
+                              word: "Email",
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return "Can't be empty";
+                                }
+                                return null;
+                              },
                             ),
-                          )),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 60,
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 15, right: 15, bottom: 10),
-                  child: Form(
-                      key: formstate1,
-                      child: Column(
-                        children: [
-                         
-                          DynamicTextfiled(
-                            keyboard: TextInputType.text,
-                            sizee: 500,
-                            word: "Email",
-                            validator: (p0) {
-                              if (p0!.isEmpty) {
-                                return "Can't be empty";
-                              }
-                              return null;
-                            },
-                          ),
-                          DynamicTextfiled(
-                            keyboard: TextInputType.text,
-                            sizee: 500,
-                            word: "Username",
-                            validator: (p0) {
-                              if (p0!.isEmpty) {
-                                return "Can't be empty";
-                              }
-                              return null;
-                            },
-                          ),
-                          Row(
-                            children: [
-                              DynamicTextfiled(
-                                keyboard: TextInputType.text,
-                                sizee: 200,
-                                word: "Gender",
-                                validator: (p0) {
-                                  if (p0 != null &&
-                                      p0 != "male" &&
-                                      p0 != "female" &&
-                                      p0 != "Male" &&
-                                      p0 != "Female") {
-                                    return " gender is Male or Female";
-                                  }
-                                  return null;
-                                },
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              DynamicTextfiled(
-                                keyboard: TextInputType.number,
-                                sizee: 150,
-                                word: "Birthday",
-                                validator: (p0) {
-                                  if (p0 == null || p0.isEmpty) {
+                            DynamicTextfiled(
+                              keyboard: TextInputType.text,
+                              sizee: 500,
+                              word: "Username",
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return "Can't be empty";
+                                }
+                                return null;
+                              },
+                            ),
+                            Row(
+                              children: [
+                                DynamicTextfiled(
+                                  keyboard: TextInputType.text,
+                                  sizee: 200,
+                                  word: "Gender",
+                                  validator: (p0) {
+                                    if (p0 != null &&
+                                        p0 != "male" &&
+                                        p0 != "female" &&
+                                        p0 != "Male" &&
+                                        p0 != "Female") {
+                                      return " gender is Male or Female";
+                                    }
                                     return null;
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ],
-                          ),
-
-                          DynamicTextfiled(
-                            keyboard: TextInputType.number,
-                            sizee: 500,
-                            word: "Phone Number",
-                            validator: (p0) {
-                              if (p0!.isEmpty) {
-                                return "Can't be empty";
-                              }
-                              return null;
-                            },
-                          ),
-                        ],
-                      )),
-                ),
-                SizedBox(
-                  width: 200,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: ContaierColor,
-                          side: BorderSide.none,
-                          shape: const StadiumBorder()),
-                      onPressed: () {
-                        if (formstate1.currentState!.validate()) {
-                        } else {
-                          return;
-                        }
-                      },
-                      child: const Text(
-                        "Edit profile",
-                        style: TextStyle(color: Colors.white),
-                      )),
-                )
-              ],
+                                  },
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                DynamicTextfiled(
+                                  keyboard: TextInputType.number,
+                                  sizee: 100,
+                                  word: "Birthday",
+                                  validator: (p0) {
+                                    if (p0 == null || p0.isEmpty) {
+                                      return null;
+                                    }
+                                    return null;
+                                  },
+                                ),
+                              ],
+                            ),
+                            DynamicTextfiled(
+                              keyboard: TextInputType.number,
+                              sizee: 500,
+                              word: "Phone Number",
+                              validator: (p0) {
+                                if (p0!.isEmpty) {
+                                  return "Can't be empty";
+                                }
+                                return null;
+                              },
+                            ),
+                          ],
+                        )),
+                  ),
+                  SizedBox(
+                    width: 200,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: ContaierColor,
+                            side: BorderSide.none,
+                            shape: const StadiumBorder()),
+                        onPressed: () {
+                          if (formstate1.currentState!.validate()) {
+                          } else {
+                            return;
+                          }
+                        },
+                        child: const Text(
+                          "Edit profile",
+                          style: TextStyle(color: Colors.white),
+                        )),
+                  )
+                ],
+              ),
             ),
           ),
         );
@@ -202,11 +204,13 @@ class DynamicTextfiled extends StatelessWidget {
     this.validator,
     required this.sizee,
     required this.keyboard,
+    this.contr,
   });
   final String word;
   final String? Function(String?)? validator;
   final double sizee;
   final TextInputType keyboard;
+  final TextEditingController? contr;
   @override
   Widget build(BuildContext context) {
     // ignore: sized_box_for_whitespace
@@ -218,7 +222,8 @@ class DynamicTextfiled extends StatelessWidget {
             keyboardType: keyboard,
             style: TextStyle(color: textIconColor),
             //   onChanged: onChanged, // Pass the onChanged callback
-            validator: validator, // Pass the validator callback
+            validator: validator,
+            controller: contr, // Pass the validator callback
             decoration: InputDecoration(
               hintMaxLines: 1,
               fillColor: textIconColor,

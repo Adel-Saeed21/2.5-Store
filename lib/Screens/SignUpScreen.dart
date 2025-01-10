@@ -1,10 +1,9 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_types_as_parameter_names
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:storeapp/Widgets/CustomTextField.dart';
 import 'package:storeapp/Widgets/Custom_Button.dart';
@@ -31,7 +30,6 @@ class _SignupscreenState extends State<Signupscreen> {
     // var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     // var backcolor = BackgroundColor;
     return BlocConsumer<Cubitrun, cubitState>(
-        // ignore: avoid_types_as_parameter_names
         builder: (context, State) {
           return ModalProgressHUD(
             inAsyncCall: isloading,
@@ -137,11 +135,11 @@ class _SignupscreenState extends State<Signupscreen> {
                                   color: ContaierColor,
                                 ),
                                 validator: (value) {
-                                  if (value!.isEmpty) {
-                                    return "Password can't be empty";
-                                  }
-                                  if (value.length < 8) {
-                                    return " this pass is short";
+                                  if (value == null || value.isEmpty) {
+                                    return 'Email is required';
+                                  } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
+                                      .hasMatch(value)) {
+                                    return 'Enter a valid email';
                                   }
                                   return null;
                                 },
@@ -175,7 +173,10 @@ class _SignupscreenState extends State<Signupscreen> {
                               Custom_Button(
                                 text: "Register",
                                 onPress: () async {
-                                  if (formstate1.currentState!.validate()) {
+                                  if (formstate1.currentState!.validate() &&
+                                      BlocProvider.of<Cubitrun>(context)
+                                              .isPasswordValid ==
+                                          true) {
                                     try {
                                       isloading = true;
                                       setState(() {});

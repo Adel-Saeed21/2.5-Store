@@ -60,7 +60,7 @@ class Profile extends StatelessWidget {
             String phone = userData['phoneNumber'] ?? 'N/A';
             String email = userData['email'] ?? 'N/A';
             String profileImage = userData['profileImage'] ?? '';
-
+            emailControler.text = email;
             return SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.all(15),
@@ -151,21 +151,21 @@ class Profile extends StatelessWidget {
                       onpress: () {},
                       icon: LineAwesomeIcons.cog_solid,
                       title: "Settings",
-                      textColor: Colors.black,
+                      textColor: Colors.white,
                       endIcon: true,
                     ),
                     ItemsProfile(
                       onpress: () {},
                       icon: LineAwesomeIcons.wallet_solid,
                       title: "Billing Details",
-                      textColor: Colors.black,
+                      textColor: Colors.white,
                       endIcon: true,
                     ),
                     ItemsProfile(
                       onpress: () {},
                       icon: LineAwesomeIcons.user_check_solid,
                       title: "User management",
-                      textColor: Colors.black,
+                      textColor: Colors.white,
                       endIcon: true,
                     ),
                     const Divider(),
@@ -174,7 +174,7 @@ class Profile extends StatelessWidget {
                       onpress: () {},
                       icon: LineAwesomeIcons.info_solid,
                       title: "Information",
-                      textColor: Colors.black,
+                      textColor: Colors.white,
                       endIcon: true,
                     ),
                     ItemsProfile(

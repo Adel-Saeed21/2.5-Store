@@ -51,10 +51,14 @@ List<String> arsenalList = [Imagee.Arsenal1, Imagee.Arsenal2];
 TextEditingController emailControler = TextEditingController();
 
 // tech list
-List<Productoutapi> techList =const [
-  Productoutapi(name: "head phone",img: "images/techImages/BlackHeadphone.png",),
-  Productoutapi(name:"SmartWatch", img:"images/techImages/SmartWatch.png" )
+List<Productoutapi> techList = const [
+  Productoutapi(
+    name: "head phone",
+    img: "images/techImages/BlackHeadphone.png",
+  ),
+  Productoutapi(name: "SmartWatch", img: "images/techImages/SmartWatch.png")
 ];
 
+TextEditingController passwordValidate = TextEditingController();
 
-  TextEditingController passwordValidate = TextEditingController();
+TextEditingController email_controler = TextEditingController();

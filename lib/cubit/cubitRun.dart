@@ -9,8 +9,12 @@ class Cubitrun extends Cubit<cubitState> {
   bool state1 = false;
   bool state2 = false;
   bool state3 = false;
-  String imageGalary = "";
+  bool M_size = false;
+  bool X_size2 = false;
+  bool XL_size = false;
 
+  String imageGalary = "";
+  bool IsBooked = false;
   bool isPasswordValid = false;
   void changeImage(String x) {
     imageChose = x;
@@ -30,12 +34,17 @@ class Cubitrun extends Cubit<cubitState> {
     }
   }
 
+  void DetailsBookButton() {
+    IsBooked = !IsBooked;
+    emit(bookedState());
+  }
+
   void changeContainerColor(int index) {
     state1 = index == 1;
     state2 = index == 2;
     state3 = index == 3;
 
-    emit(UpdateContainerColor());
+    emit(UpdateContainerImageColor());
   }
 
   void setPasswordValidation(bool isValid) {
