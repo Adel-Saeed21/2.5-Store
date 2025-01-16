@@ -19,7 +19,7 @@ class Itemdetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     BlocProvider.of<Cubitrun>(context).changeImage(imageess);
-
+    List<String> sizes = ["M", "L", "XL"];
     return BlocConsumer<Cubitrun, cubitState>(
         // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
         builder: (context, State) {
@@ -29,6 +29,10 @@ class Itemdetails extends StatelessWidget {
               leading: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
+                    BlocProvider.of<Cubitrun>(context).state1 = false;
+                    BlocProvider.of<Cubitrun>(context).state2 = false;
+                    BlocProvider.of<Cubitrun>(context).state3 = false;
+                    BlocProvider.of<Cubitrun>(context).IsBooked = false;
                   },
                   icon: Icon(
                     Icons.arrow_back_ios_new,
@@ -130,24 +134,25 @@ class Itemdetails extends StatelessWidget {
                   "Size Avialable",
                   style: TextStyle(color: textIconColor, fontSize: 16),
                 ),
-                const Row(
-                  children: [
-                    OutButtonSize(
-                      size: 'M',
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    OutButtonSize(
-                      size: 'L',
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    OutButtonSize(
-                      size: 'XL',
-                    ),
-                  ],
+                Row(
+                  children: List.generate(sizes.length, (index) {
+                    return OutButtonSize(size: sizes[index]);
+                  }),
+                  // OutButtonSize(
+                  //   size: 'M',
+                  // ),
+                  // SizedBox(
+                  //   width: 5,
+                  // ),
+                  // OutButtonSize(
+                  //   size: 'L',
+                  // ),
+                  // SizedBox(
+                  //   width: 5,
+                  // ),
+                  // OutButtonSize(
+                  //   size: 'XL',
+                  // ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -215,21 +220,26 @@ class OutButtonSize extends StatelessWidget {
   final String size;
   @override
   Widget build(BuildContext context) {
-    return OutlinedButton(
-        style: OutlinedButton.styleFrom(
-            side: BorderSide(
-              color: textIconColor,
-              width: 2,
-            ),
-            padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10))),
-        onPressed: () {},
-        child: Text(
-          size,
-          style: TextStyle(
-              color: textIconColor, fontWeight: FontWeight.w500, fontSize: 14),
-        ));
+    return Container(
+      margin: const EdgeInsets.only(right: 10),
+      child: OutlinedButton(
+          style: OutlinedButton.styleFrom(
+              side: BorderSide(
+                color: textIconColor,
+                width: 2,
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10))),
+          onPressed: () {},
+          child: Text(
+            size,
+            style: TextStyle(
+                color: textIconColor,
+                fontWeight: FontWeight.w500,
+                fontSize: 14),
+          )),
+    );
   }
 }
 
