@@ -21,7 +21,6 @@ class Editprofile extends StatelessWidget {
     // var backcolor = isDark ? Colors.black : Colors.white;
     // var textcolor = isDark ? Colors.white : Colors.black;
     GlobalKey<FormState> formstate1 = GlobalKey();
-    double screenWidth = MediaQuery.of(context).size.width;
     return BlocConsumer<Cubitrun, cubitState>(
       builder: (context, state) {
         return Scaffold(

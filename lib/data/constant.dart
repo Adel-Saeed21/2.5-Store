@@ -3,9 +3,10 @@ import 'package:storeapp/Widgets/productOutAPI.dart';
 import 'package:storeapp/Widgets/salesCard.dart';
 import 'package:storeapp/data/Images.dart';
 
+//0xffECDFCC
 Color maincolor = const Color(0xff3A3960);
 Color secondcolor = Colors.white;
-Color iconColor = const Color(0xffECDFCC);
+Color iconColor = const Color(0xffffffff);
 Color backColor = const Color(0xff5E686D);
 Color tcolor = const Color(0xffFAFFC5);
 

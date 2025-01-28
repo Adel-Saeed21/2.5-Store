@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
             'Profile': (context) => const Profile(),
             'more': (context) => const Moreitems()
           },
-          home: const TestScreen(),
+          home: const NavigationbarStatus(),
         ));
   }
 }

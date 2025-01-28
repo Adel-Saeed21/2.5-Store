@@ -33,7 +33,7 @@ class SalesCard extends StatelessWidget {
         children: [
           // Main container
           Container(
-            height: 180,
+            height: 183,
             width: 180,
             decoration: BoxDecoration(
               boxShadow: [
@@ -71,28 +71,46 @@ class SalesCard extends StatelessWidget {
                           fontWeight: FontWeight.w500),
                     ),
                   ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "$prince\$",
-                      style: const TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          decoration: TextDecoration.lineThrough),
-                    ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(left: 10),
-                    alignment: Alignment.topLeft,
-                    child: Text(
-                      "$sales\$",
-                      style: TextStyle(
-                          color: backgroundColor,
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold),
-                    ),
+                  Row(
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.only(left: 10),
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "$prince\$",
+                              style: const TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration.lineThrough),
+                            ),
+                          ),
+                          Container(
+                            margin: const EdgeInsets.only(left: 10),
+                            alignment: Alignment.topLeft,
+                            child: Text(
+                              "$sales\$",
+                              style: TextStyle(
+                                  color: backgroundColor,
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        width: 50,
+                      ),
+                      IconButton(
+                          onPressed: () {},
+                          icon: const Icon(
+                            Icons.favorite_outline,
+                            color: Colors.black,
+                            size: 30,
+                          ))
+                    ],
                   ),
                 ],
               ),

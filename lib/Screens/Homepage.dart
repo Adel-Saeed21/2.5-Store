@@ -22,12 +22,10 @@ class _HomepageState extends State<Homepage> {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: backgroundColor,
-        title:const Text(
+        title: Text(
           "2.5Store",
           style: TextStyle(
-              color: const Color.fromARGB(255, 17, 105, 177),
-              fontSize: 25,
-              fontWeight: FontWeight.bold),
+              color: textIconColor, fontSize: 25, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         leading: Icon(
@@ -97,32 +95,27 @@ class _HomepageState extends State<Homepage> {
             children: [
               CategoriezIcon(
                 text: "Tech",
-                data: "images/digitals.jpg", listItems:techList,
+                data: "images/digitals.jpg",
+                listItems: techList,
               ),
               // SizedBox(
               //   width: MediaQuery.of(context).size.width - 400,
               // ),
-               CategoriezIcon(
+              CategoriezIcon(
                 text: "Sports",
                 data: "images/shirt_sports/sports.jpg",
-                listItems:techList,
+                listItems: techList,
               ),
               // SizedBox(
               //   width: MediaQuery.of(context).size.width - 400,
               // ),
-               CategoriezIcon(
-                text: "Man",
-                data: "images/man.jpg",
-                listItems:techList
-              ),
+              CategoriezIcon(
+                  text: "Man", data: "images/man.jpg", listItems: techList),
               // SizedBox(
               //   width: MediaQuery.of(context).size.width - 400,
               // ),
-               CategoriezIcon(
-                text: "Woman",
-                data: "images/woman.jpg",
-                listItems:techList
-              ),
+              CategoriezIcon(
+                  text: "Woman", data: "images/woman.jpg", listItems: techList),
             ],
           ),
           Container(
@@ -161,7 +154,10 @@ class _HomepageState extends State<Homepage> {
                           onPressed: () {
                             Navigator.pushNamed(context, "more");
                           },
-                          icon: const Icon(Icons.arrow_circle_right))
+                          icon: const Icon(
+                            Icons.arrow_circle_right,
+                            color: Colors.white,
+                          ))
                     ],
                   ),
                 ),

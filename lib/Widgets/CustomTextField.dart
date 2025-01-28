@@ -1,5 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:storeapp/data/constant.dart';
 
 // ignore: must_be_immutable
@@ -20,6 +22,7 @@ class CustomTextField extends StatefulWidget {
   final Icon? dIcon;
 final TextEditingController? mycontroller;
   @override
+  // ignore: library_private_types_in_public_api
   _CustomTextFieldState createState() => _CustomTextFieldState();
 }
 
