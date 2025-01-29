@@ -51,33 +51,34 @@ class _HomepageState extends State<Homepage> {
           const SizedBox(
             height: 10,
           ),
-          GestureDetector(
-            child: TextField(
-              enabled: false,
-              decoration: InputDecoration(
-                  prefixIcon: Icon(
-                    Icons.search,
-                    color: ContaierColor,
-                  ),
-                  suffixIcon: Icon(
-                    FontAwesomeIcons.listCheck,
-                    color: textIconColor,
-                  ),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: textIconColor)),
-                  hintText: "Search",
-                  hintStyle: const TextStyle(color: Colors.grey),
-                  enabled: true,
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      borderSide: BorderSide(color: ContaierColor)),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20),
-                      // ignore: prefer_const_constructors
-                      borderSide: BorderSide(color: ContaierColor))),
-            ),
-          ),
+          // GestureDetector(
+
+          //   child: TextField(
+          //     enabled: false,
+          //     decoration: InputDecoration(
+          //         prefixIcon: Icon(
+          //           Icons.search,
+          //           color: ContaierColor,
+          //         ),
+          //         suffixIcon: Icon(
+          //           FontAwesomeIcons.listCheck,
+          //           color: textIconColor,
+          //         ),
+          //         border: OutlineInputBorder(
+          //             borderRadius: BorderRadius.circular(20),
+          //             borderSide: BorderSide(color: textIconColor)),
+          //         hintText: "Search",
+          //         hintStyle: const TextStyle(color: Colors.grey),
+          //         enabled: true,
+          //         focusedBorder: OutlineInputBorder(
+          //             borderRadius: BorderRadius.circular(20),
+          //             borderSide: BorderSide(color: ContaierColor)),
+          //         enabledBorder: OutlineInputBorder(
+          //             borderRadius: BorderRadius.circular(20),
+          //             // ignore: prefer_const_constructors
+          //             borderSide: BorderSide(color: ContaierColor))),
+          //   ),
+          // ),
           const SizedBox(
             height: 20,
           ),

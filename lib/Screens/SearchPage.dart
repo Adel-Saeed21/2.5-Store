@@ -11,18 +11,12 @@ class Searchpage extends StatefulWidget {
 class _MyWidgetState extends State<Searchpage> {
   @override
   Widget build(BuildContext context) {
-    bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
-    var bcolor = isDark ? Colors.black : Colors.white;
+    // bool isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    // var bcolor = isDark ? Colors.black : Colors.white;
 
     return Scaffold(
-      backgroundColor: bcolor,
-      appBar: AppBar(
-        title: Text(
-          "EzeStore",
-          style: TextStyle(color: maincolor, fontWeight: FontWeight.bold),
-        ),
-       // leading: Icon(Fo),
-      ),
+      backgroundColor: backgroundColor,
+     
     );
   }
 }
