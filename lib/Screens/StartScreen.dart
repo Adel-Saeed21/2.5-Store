@@ -29,7 +29,7 @@ class _StartScreenState extends State<StartScreen> {
             // ignore: avoid_unnecessary_containers
             Container(
               child: Image.asset(
-                "images/bagstart.png",
+                "images/Picsart_25-02-05_13-49-09-890.png",
                 height: MediaQuery.sizeOf(context).height - 400,
                 width: MediaQuery.sizeOf(context).width - 30,
               ),

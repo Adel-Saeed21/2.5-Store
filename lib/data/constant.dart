@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:storeapp/Widgets/productOutAPI.dart';
 import 'package:storeapp/Widgets/salesCard.dart';
 import 'package:storeapp/data/Images.dart';
+import 'package:storeapp/data/searchData.dart';
 
 //0xffECDFCC
 Color maincolor = const Color(0xff3A3960);
@@ -63,3 +64,14 @@ List<Productoutapi> techList = const [
 TextEditingController passwordValidate = TextEditingController();
 
 TextEditingController email_controler = TextEditingController();
+TextEditingController search_controler = TextEditingController();
+
+//search List
+List<Searchdata> popularItem = [
+  Searchdata(Imagee.Realmadried1, 200, "Realmadried"),
+  Searchdata(Imagee.Ahly1, 200, "Alahly"),
+  Searchdata(Imagee.Realmadried3, 250, "Realmadried"),
+  Searchdata("images/techImages/SmartWatch.png", 200, "smart Watch")
+];
+
+List<Searchdata> searchedItem = [];

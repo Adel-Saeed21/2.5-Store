@@ -1,8 +1,4 @@
-// ignore: unnecessary_import
-// ignore_for_file: file_names
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
 import 'package:storeapp/Widgets/TPromoSlider.dart';
 import 'package:storeapp/Widgets/categorizeIcon.dart';
 import 'package:storeapp/Widgets/salesCard.dart';
@@ -49,38 +45,7 @@ class _HomepageState extends State<Homepage> {
         padding: const EdgeInsets.only(right: 15, left: 15),
         children: [
           const SizedBox(
-            height: 10,
-          ),
-          // GestureDetector(
-
-          //   child: TextField(
-          //     enabled: false,
-          //     decoration: InputDecoration(
-          //         prefixIcon: Icon(
-          //           Icons.search,
-          //           color: ContaierColor,
-          //         ),
-          //         suffixIcon: Icon(
-          //           FontAwesomeIcons.listCheck,
-          //           color: textIconColor,
-          //         ),
-          //         border: OutlineInputBorder(
-          //             borderRadius: BorderRadius.circular(20),
-          //             borderSide: BorderSide(color: textIconColor)),
-          //         hintText: "Search",
-          //         hintStyle: const TextStyle(color: Colors.grey),
-          //         enabled: true,
-          //         focusedBorder: OutlineInputBorder(
-          //             borderRadius: BorderRadius.circular(20),
-          //             borderSide: BorderSide(color: ContaierColor)),
-          //         enabledBorder: OutlineInputBorder(
-          //             borderRadius: BorderRadius.circular(20),
-          //             // ignore: prefer_const_constructors
-          //             borderSide: BorderSide(color: ContaierColor))),
-          //   ),
-          // ),
-          const SizedBox(
-            height: 20,
+            height: 30,
           ),
           Text(
             "Categories",

@@ -19,15 +19,15 @@ class Profile extends StatelessWidget {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: backgroundColor,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(
-            LineAwesomeIcons.angle_left_solid,
-            color: textIconColor,
-          ),
-        ),
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Navigator.pop(context);
+        //   },
+        //   icon: Icon(
+        //     LineAwesomeIcons.angle_left_solid,
+        //     color: textIconColor,
+        //   ),
+        // ),
         title: Center(
           child: Text(
             "Profile",

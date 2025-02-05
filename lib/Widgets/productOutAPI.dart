@@ -20,13 +20,13 @@ final String img;
             padding: const EdgeInsets.all(8),
             width: 210,
             height: 200,
-            decoration: BoxDecoration(boxShadow: [
-              BoxShadow(
-                  blurRadius: 40,
-                  color: ContaierColor,
-                  spreadRadius: 0,
-                  offset: const Offset(10, 10)),
-            ]),
+            // decoration: BoxDecoration(boxShadow: [
+            //   // BoxShadow(
+            //   //     blurRadius: 40,
+            //   //     color: ContaierColor,
+            //   //     spreadRadius: 0,
+            //   //     offset: const Offset(10, 10)),
+            // ]),
             child: Card(
               elevation: 10,
               color: Colors.white,
