@@ -63,7 +63,7 @@ List<Productoutapi> techList = const [
 
 TextEditingController passwordValidate = TextEditingController();
 
-TextEditingController email_controler = TextEditingController();
+final TextEditingController emailController = TextEditingController();
 TextEditingController search_controler = TextEditingController();
 
 //search List

@@ -125,7 +125,7 @@ class Profile extends StatelessWidget {
                       child: ElevatedButton(
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Editprofile(
+                              builder: (context) => EditProfile(
                                     img: profileImage,
                                     email: email,
                                   )));
