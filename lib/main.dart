@@ -7,7 +7,6 @@ import 'package:storeapp/Screens/LoginPage.dart';
 import 'package:storeapp/Screens/MoreItems.dart';
 import 'package:storeapp/Screens/NavigationBar.dart';
 import 'package:storeapp/Screens/Profile.dart';
-import 'package:storeapp/Screens/SearchPage.dart';
 import 'package:storeapp/Screens/SignUpScreen.dart';
 import 'package:storeapp/Screens/StartScreen.dart';
 import 'package:storeapp/Screens/UpdateproductPage.dart';

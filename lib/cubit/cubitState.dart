@@ -1,10 +1,12 @@
+// ignore_for_file: camel_case_types, file_names
+
 import 'dart:io';
 
 abstract class cubitState {}
 
 class TshirtChange extends cubitState {}
 class TshirtSize extends cubitState{}
-class bookedState extends cubitState{}
+class BookedState extends cubitState{}
 class UpdateContainerImageColor extends cubitState{}
 class ButtonColor extends cubitState {}
 class ImageInitial extends cubitState {}

@@ -177,6 +177,7 @@ class _LoginScreenState extends State<LoginScreen> {
     UserCredential user = await auth.signInWithEmailAndPassword(
         email: email!, password: password!);
 
+    // ignore: avoid_print
     print("Login Successful: ${user.user?.email}");
   }
 }

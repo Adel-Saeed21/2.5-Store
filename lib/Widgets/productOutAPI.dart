@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:storeapp/data/constant.dart';
 
 class Productoutapi extends StatelessWidget {
   const Productoutapi({super.key, required this.name, required this.img});

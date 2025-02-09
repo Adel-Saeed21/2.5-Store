@@ -28,16 +28,15 @@ class Profile extends StatelessWidget {
         //     color: textIconColor,
         //   ),
         // ),
-        title: Center(
-          child: Text(
-            "Profile",
-            style: TextStyle(
-              fontSize: 25,
-              fontWeight: FontWeight.bold,
-              color: textIconColor,
-            ),
+        title: Text(
+          "Profile",
+          style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: textIconColor,
           ),
         ),
+        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {},

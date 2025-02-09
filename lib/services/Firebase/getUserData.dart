@@ -16,10 +16,12 @@ Future<Map<String, dynamic>?> getUserData() async {
     if (userDoc.exists) {
       return userDoc.data() as Map<String, dynamic>;
     } else {
+      // ignore: avoid_print
       print('User not found');
       return null;
     }
   } catch (e) {
+    // ignore: avoid_print
     print('Error fetching user data: $e');
     return null;
   }
@@ -32,6 +34,7 @@ void fetchAndDisplayUserData() async {
     tprofileHeading = userData['username'];
     tProfilePicture = userData['profileImage'];
   } else {
+    // ignore: avoid_print
     print('Failed to fetch user data.');
   }
 }

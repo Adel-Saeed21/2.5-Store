@@ -1,3 +1,6 @@
+// ignore_for_file: file_names
+
+// ignore: unnecessary_import
 import 'package:carousel_slider/carousel_options.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +63,7 @@ class TPromoSLider extends StatelessWidget {
               for (int i = 0; i < 3; i++)
                 SmallContainerHome(
                   padding: 5,
+                  // ignore: unrelated_type_equality_checks
                   color: controller.currentIndex == i
                       ? textIconColor
                       : Colors.grey,

@@ -1,4 +1,7 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:storeapp/Widgets/TPromoSlider.dart';
 import 'package:storeapp/Widgets/categorizeIcon.dart';
 import 'package:storeapp/Widgets/salesCard.dart';
@@ -24,19 +27,15 @@ class _HomepageState extends State<Homepage> {
               color: textIconColor, fontSize: 25, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
-        leading: Icon(
-          Icons.shopping_basket,
-          color: textIconColor,
-        ),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, "Profile");
             },
             icon: Icon(
-              Icons.person,
+              FontAwesomeIcons.cartShopping,
               color: textIconColor,
-              size: 30,
+              size: 25,
             ),
           )
         ],
@@ -64,22 +63,13 @@ class _HomepageState extends State<Homepage> {
                 data: "images/digitals.jpg",
                 listItems: techList,
               ),
-              // SizedBox(
-              //   width: MediaQuery.of(context).size.width - 400,
-              // ),
               CategoriezIcon(
                 text: "Sports",
                 data: "images/shirt_sports/sports.jpg",
                 listItems: techList,
               ),
-              // SizedBox(
-              //   width: MediaQuery.of(context).size.width - 400,
-              // ),
               CategoriezIcon(
                   text: "Man", data: "images/man.jpg", listItems: techList),
-              // SizedBox(
-              //   width: MediaQuery.of(context).size.width - 400,
-              // ),
               CategoriezIcon(
                   text: "Woman", data: "images/woman.jpg", listItems: techList),
             ],

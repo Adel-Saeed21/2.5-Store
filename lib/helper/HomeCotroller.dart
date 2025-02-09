@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, unnecessary_import
+
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 

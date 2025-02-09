@@ -1,9 +1,11 @@
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:storeapp/data/constant.dart';
 
 // ignore: must_be_immutable
-class inputTextfiled extends StatelessWidget {
-  inputTextfiled({
+class InputTextfiled extends StatelessWidget {
+  InputTextfiled({
     super.key,
     this.username,
     this.iconData,

@@ -36,7 +36,7 @@ class Cubitrun extends Cubit<cubitState> {
 
   void DetailsBookButton() {
     IsBooked = !IsBooked;
-    emit(bookedState());
+    emit(BookedState());
   }
 
   void changeContainerColor(int index) {

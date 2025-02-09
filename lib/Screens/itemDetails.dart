@@ -9,6 +9,7 @@ import 'package:storeapp/cubit/cubitRun.dart';
 import 'package:storeapp/cubit/cubitState.dart';
 
 import 'package:storeapp/data/constant.dart';
+import 'package:storeapp/helper/SnaceBar.dart';
 
 class Itemdetails extends StatelessWidget {
   const Itemdetails({super.key, required this.detials, required this.imageess});
@@ -138,21 +139,6 @@ class Itemdetails extends StatelessWidget {
                   children: List.generate(sizes.length, (index) {
                     return OutButtonSize(size: sizes[index]);
                   }),
-                  // OutButtonSize(
-                  //   size: 'M',
-                  // ),
-                  // SizedBox(
-                  //   width: 5,
-                  // ),
-                  // OutButtonSize(
-                  //   size: 'L',
-                  // ),
-                  // SizedBox(
-                  //   width: 5,
-                  // ),
-                  // OutButtonSize(
-                  //   size: 'XL',
-                  // ),
                 ),
                 const SizedBox(
                   height: 20,
@@ -169,13 +155,14 @@ class Itemdetails extends StatelessWidget {
                           height: 40,
                           child: TextButton(
                               onPressed: () {
-                                BlocProvider.of<Cubitrun>(context)
-                                    .DetailsBookButton();
+                                // BlocProvider.of<Cubitrun>(context)
+                                //     .DetailsBookButton();
+                                ShowMessage(context, "Check item list");
                               },
                               child: Text(
                                 BlocProvider.of<Cubitrun>(context).IsBooked
-                                    ? "Unbooked"
-                                    : "Book",
+                                    ? "Add to card"
+                                    : "Add to card",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontWeight: FontWeight.w600,

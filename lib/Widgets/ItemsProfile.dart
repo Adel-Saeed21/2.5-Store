@@ -35,7 +35,7 @@ class ItemsProfile extends StatelessWidget {
         height: 40,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(100),
-            color: maincolor.withOpacity(0.1)),
+            color: maincolor),
         child: Icon(
           icon,
           size: 30,
@@ -53,7 +53,7 @@ class ItemsProfile extends StatelessWidget {
               height: 40,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
-                  color: Colors.grey.withOpacity(0.1)),
+                  color: Colors.grey),
               child:const Icon(
                 LineAwesomeIcons.angle_right_solid,
                 size: 18.0,
