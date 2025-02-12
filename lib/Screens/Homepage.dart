@@ -22,41 +22,38 @@ class _HomepageState extends State<Homepage> {
       appBar: AppBar(
         backgroundColor: backgroundColor,
         title: Text(
-          "2.5Store",
+          "2.5tore",
           style: TextStyle(
-              color: textIconColor, fontSize: 25, fontWeight: FontWeight.bold),
+              color: textIconColor, fontSize: 22, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, "Profile");
+              Navigator.pushNamed(context, "OrderScreen");
             },
             icon: Icon(
               FontAwesomeIcons.cartShopping,
               color: textIconColor,
               size: 25,
             ),
-          )
+          ),
         ],
       ),
       body: ListView(
-        padding: const EdgeInsets.only(right: 15, left: 15),
+        padding: const EdgeInsets.symmetric(horizontal: 15),
         children: [
-          const SizedBox(
-            height: 30,
-          ),
+          const SizedBox(height: 20),
           Text(
             "Categories",
             style: TextStyle(
                 color: textIconColor,
-                fontSize: 25,
+                fontSize: 24,
                 fontWeight: FontWeight.bold),
           ),
-          const SizedBox(
-            height: 10,
-          ),
+          const SizedBox(height: 12),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               CategoriezIcon(
                 text: "Tech",
@@ -75,13 +72,13 @@ class _HomepageState extends State<Homepage> {
             ],
           ),
           Container(
-            margin: const EdgeInsets.only(top: 40),
+            margin: const EdgeInsets.only(top: 35),
             height: MediaQuery.of(context).size.height - 330,
             decoration: BoxDecoration(
-                color: ContaierColor,
-                borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20))),
+              color: ContaierColor,
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+            ),
             child: Column(
               children: [
                 const Padding(
@@ -89,57 +86,56 @@ class _HomepageState extends State<Homepage> {
                   child: TPromoSLider(),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 10.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        "Best sales",
+                        "Best Sales",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
-                        width: MediaQuery.of(context).size.width - 220,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, "more");
+                        },
+                        child: const Row(
+                          children: [
+                            Text(
+                              "More",
+                              style: TextStyle(
+                                  color: Colors.blueAccent,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                            SizedBox(width: 5),
+                            Icon(Icons.arrow_circle_right,
+                                color: Colors.blueAccent),
+                          ],
+                        ),
                       ),
-                      const Text(
-                        "More",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                      IconButton(
-                          onPressed: () {
-                            Navigator.pushNamed(context, "more");
-                          },
-                          icon: const Icon(
-                            Icons.arrow_circle_right,
-                            color: Colors.white,
-                          ))
                     ],
                   ),
                 ),
-                Row(
-                  children: [
-                    Expanded(
-                      child: SizedBox(
-                        height: 200,
-                        child: ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: salescards.length,
-                          itemBuilder: (context, i) => SalesCard(
-                            prince: salescards[i].prince,
-                            sales: salescards[i].sales,
-                            imagess: salescards[i].imagess,
-                            nameofobj: salescards[i].nameofobj,
-                            details: salescards[i].details,
-                          ),
-                        ),
-                      ),
+                const SizedBox(height: 10),
+                SizedBox(
+                  height: 200,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: salescards.length,
+                    itemBuilder: (context, i) => SalesCard(
+                      prince: salescards[i].prince,
+                      sales: salescards[i].sales,
+                      imagess: salescards[i].imagess,
+                      nameofobj: salescards[i].nameofobj,
+                      details: salescards[i].details,
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

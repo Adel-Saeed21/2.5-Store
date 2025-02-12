@@ -11,6 +11,7 @@ import 'package:storeapp/Screens/SignUpScreen.dart';
 import 'package:storeapp/Screens/StartScreen.dart';
 import 'package:storeapp/Screens/UpdateproductPage.dart';
 import 'package:storeapp/Screens/homePage.dart';
+import 'package:storeapp/Screens/order_Screen.dart';
 import 'package:storeapp/cubit/cubitRun.dart';
 import 'package:storeapp/firebase_options.dart';
 
@@ -44,7 +45,8 @@ class MyApp extends StatelessWidget {
             'Signup': (context) => const Signupscreen(),
             'EditProfile': (context) => const EditProfile(),
             'Profile': (context) => const Profile(),
-            'more': (context) => const Moreitems()
+            'more': (context) => const Moreitems(),
+            'OrderScreen': (context) => const OrderScreen(),
           },
           home: const NavigationbarStatus(),
         ));

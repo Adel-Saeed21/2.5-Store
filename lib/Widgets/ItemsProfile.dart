@@ -34,12 +34,11 @@ class ItemsProfile extends StatelessWidget {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(100),
-            color: maincolor),
+            borderRadius: BorderRadius.circular(100), color: ContaierColor),
         child: Icon(
           icon,
           size: 30,
-          color: maincolor,
+          color: textIconColor,
         ),
       ),
       title: Text(
@@ -52,12 +51,11 @@ class ItemsProfile extends StatelessWidget {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Colors.grey),
-              child:const Icon(
+                  borderRadius: BorderRadius.circular(100), color: Colors.grey),
+              child: Icon(
                 LineAwesomeIcons.angle_right_solid,
                 size: 18.0,
-                color: Colors.grey,
+                color: textIconColor,
               ),
             )
           : null,
