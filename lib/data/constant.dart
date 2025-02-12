@@ -71,7 +71,12 @@ List<Searchdata> popularItem = [
   Searchdata(Imagee.Realmadried1, 200, "Realmadried"),
   Searchdata(Imagee.Ahly1, 200, "Alahly"),
   Searchdata(Imagee.Realmadried3, 250, "Realmadried"),
-  Searchdata("images/techImages/SmartWatch.png", 200, "smart Watch")
+  Searchdata("images/techImages/SmartWatch.png", 200, "smart Watch"),
+  Searchdata("images/womanImage/woman1.png", 200, "dress"),
+  Searchdata("images/womanImage/woman2.png", 200, "dress"),
+  Searchdata("images/womanImage/woman3.png", 200, "dress"),
+  Searchdata("images/womanImage/woman4.png", 200, "dress"),
+  Searchdata("images/techImages/BlackHeadphone.png", 200, "Headphone"),
 ];
 
 List<Searchdata> searchedItem = [];
