@@ -101,9 +101,7 @@ class _SearchpageState extends State<Searchpage> {
         prefixIcon: Icon(Icons.search, color: textIconColor),
         suffixIcon: IconButton(
           icon: Icon(FontAwesomeIcons.listCheck, color: textIconColor),
-          onPressed: () {
-  
-          },
+          onPressed: () {},
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(20),
@@ -161,9 +159,7 @@ class _SearchpageState extends State<Searchpage> {
           mainAxisSpacing: 2,
           crossAxisSpacing: 2,
         ),
-        itemCount: searchController.text.isEmpty
-            ? popularItem.length
-            : searchedItem.length,
+        itemCount: searchController.text.isEmpty ? 4 : searchedItem.length,
         itemBuilder: (context, i) => Productoutapi(
           name: searchController.text.isEmpty
               ? popularItem[i].name
