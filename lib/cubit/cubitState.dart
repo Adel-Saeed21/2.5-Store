@@ -21,3 +21,7 @@ class ImageError extends cubitState {
   ImageError(this.message);
 }
 
+class CartIncrement extends cubitState{
+  
+}
+

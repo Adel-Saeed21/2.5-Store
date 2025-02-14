@@ -12,6 +12,7 @@ class Cubitrun extends Cubit<cubitState> {
   bool M_size = false;
   bool X_size2 = false;
   bool XL_size = false;
+  int sizeIncreament = 1;
 
   String imageGalary = "";
   bool IsBooked = false;
@@ -53,4 +54,18 @@ class Cubitrun extends Cubit<cubitState> {
   }
 
   void Changeimages() {}
+
+  void cartIncrement(bool isIncrement) {
+    if (isIncrement) {
+      if (sizeIncreament < 9) {
+        sizeIncreament++;
+        emit(CartIncrement());
+      }
+    } else {
+      if (sizeIncreament > 1) {
+        sizeIncreament--;
+        emit(CartIncrement());
+      }
+    }
+  }
 }

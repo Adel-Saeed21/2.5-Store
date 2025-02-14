@@ -1,6 +1,9 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:storeapp/cubit/cubitRun.dart';
+import 'package:storeapp/cubit/cubitState.dart';
 import 'package:storeapp/data/constant.dart';
 
 class OrderScreen extends StatefulWidget {
@@ -140,46 +143,52 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   Widget NumberOfItem() {
-    return Container(
-      height: 40,
-    
-      decoration: BoxDecoration(
-        color: Colors.grey.shade200, 
-        borderRadius: BorderRadius.circular(25),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          IconButton(
-            icon: const Icon(
-              Icons.remove,
-              color: Colors.black,
-              size: 15,
-            ),
-            onPressed: () {
-              setState(() {});
-            },
+    BlocProvider.of<Cubitrun>(context).sizeIncreament;
+    return BlocConsumer<Cubitrun, cubitState>(
+      listener: (context, state) {
+      },
+      builder: (context, state) {
+        return Container(
+          height: 40,
+          decoration: BoxDecoration(
+            color: Colors.grey.shade200,
+            borderRadius: BorderRadius.circular(25),
           ),
-        const  Text(
-            "2",
-            style:  TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: Colors.black,
-            ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                icon: const Icon(
+                  Icons.remove,
+                  color: Colors.black,
+                  size: 15,
+                ),
+                onPressed: () {
+                   BlocProvider.of<Cubitrun>(context).cartIncrement(false);
+                },
+              ),
+              Text(
+                "${BlocProvider.of<Cubitrun>(context).sizeIncreament}",
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
+              ),
+              IconButton(
+                icon: const Icon(
+                  Icons.add,
+                  color: Colors.black,
+                  size: 12,
+                ),
+                onPressed: () {
+                  BlocProvider.of<Cubitrun>(context).cartIncrement(true);
+                },
+              ),
+            ],
           ),
-          IconButton(
-            icon: const Icon(
-              Icons.add,
-              color: Colors.black,
-              size: 12,
-            ),
-            onPressed: () {
-              setState(() {});
-            },
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }
