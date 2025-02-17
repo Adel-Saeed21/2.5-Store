@@ -29,16 +29,25 @@ class _HomepageState extends State<Homepage> {
         centerTitle: true,
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, "OrderScreen");
-            },
-            icon: Icon(
-              FontAwesomeIcons.cartShopping,
-              color: textIconColor,
-              size: 25,
-            ),
-          ),
+              onPressed: () {
+                 Navigator.pushNamed(context, "Profile");
+              },
+              icon: Icon(
+                Icons.person,
+                color: textIconColor,
+                size: 25,
+              ))
         ],
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, "OrderScreen");
+          },
+          icon: Icon(
+            FontAwesomeIcons.cartShopping,
+            color: textIconColor,
+            size: 25,
+          ),
+        ),
       ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 15),

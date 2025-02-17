@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:motion_tab_bar/MotionTabBar.dart';
-import 'package:storeapp/Screens/Profile.dart';
 import 'package:storeapp/Screens/SearchPage.dart';
 import 'package:storeapp/Screens/UpdateproductPage.dart';
 import 'package:storeapp/Screens/homePage.dart';
@@ -23,7 +22,7 @@ class _NavigationbarState extends State<NavigationbarStatus> {
 
     const Searchpage(),
     const UpdateProductPage(),
-    const Profile()
+
     // const Profilescreen(),
   ];
 
@@ -31,15 +30,12 @@ class _NavigationbarState extends State<NavigationbarStatus> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: MotionTabBar(
-        labels: const ["Home", "Search", "Favourite", "Profile"],
+        labels: const ["Home", "Search", "Favourite"],
         initialSelectedTab: "Home",
         icons: const [
           Icons.home,
           Icons.search_sharp, // Icon for Home tab
           FontAwesomeIcons.heart,
-          Icons.person // Icon for Search tab
-
-          // Icons.person,     // Icon for Profile tab
         ],
         tabSize: 50,
         tabBarColor: backgroundColor,
