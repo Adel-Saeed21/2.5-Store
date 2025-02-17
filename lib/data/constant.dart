@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:storeapp/Widgets/productOutAPI.dart';
 import 'package:storeapp/Widgets/salesCard.dart';
 import 'package:storeapp/data/Images.dart';
-import 'package:storeapp/data/searchData.dart';
+import 'package:storeapp/data/DataUse.dart';
 
 //0xffECDFCC
 Color maincolor = const Color(0xff3A3960);
@@ -80,3 +80,4 @@ List<Searchdata> popularItem = [
 ];
 
 List<Searchdata> searchedItem = [];
+List<MyCartItems> myCartItem = [];

@@ -27,6 +27,9 @@ class SalesCard extends StatelessWidget {
             builder: (context) => Itemdetails(
                   detials: details,
                   imageess: imagess,
+                  names: nameofobj,
+                  price: prince,
+                  sale: sales,
                 )));
       },
       child: Stack(

@@ -7,15 +7,27 @@ import 'package:marquee/marquee.dart';
 import 'package:storeapp/Widgets/colotTshirtContainer.dart';
 import 'package:storeapp/cubit/cubitRun.dart';
 import 'package:storeapp/cubit/cubitState.dart';
+import 'package:storeapp/data/DataUse.dart';
 
 import 'package:storeapp/data/constant.dart';
 import 'package:storeapp/helper/SnaceBar.dart';
 
+// ignore: must_be_immutable
 class Itemdetails extends StatelessWidget {
-  const Itemdetails({super.key, required this.detials, required this.imageess});
+  Itemdetails(
+      {super.key,
+      required this.detials,
+      required this.imageess,
+      required this.names,
+      required this.price,
+      required this.sale});
 
   final List detials;
   final String imageess;
+  String imgSelect = "";
+  final String names;
+  final double price;
+  final double sale;
 
   @override
   Widget build(BuildContext context) {
@@ -122,6 +134,7 @@ class Itemdetails extends StatelessWidget {
                             .changeContainerColor(index + 1);
                         BlocProvider.of<Cubitrun>(context)
                             .changeImage(detials[index]);
+                        imgSelect = detials[index];
                       },
                       changecolor: BlocProvider.of<Cubitrun>(context)
                           .getStateByIndex(index + 1),
@@ -158,6 +171,10 @@ class Itemdetails extends StatelessWidget {
                                 // BlocProvider.of<Cubitrun>(context)
                                 //     .DetailsBookButton();
                                 ShowMessage(context, "Check item list");
+                                myCartItem.add(
+                                  MyCartItems(imgSelect, true, names, price,
+                                      sale, true),
+                                );
                               },
                               child: Text(
                                 BlocProvider.of<Cubitrun>(context).IsBooked
