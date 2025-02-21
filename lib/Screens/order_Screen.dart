@@ -1,9 +1,9 @@
+// ignore_for_file: avoid_print
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:storeapp/cubit/cubitRun.dart';
-import 'package:storeapp/cubit/cubitState.dart';
+
 import 'package:storeapp/data/DataUse.dart';
 import 'package:storeapp/data/constant.dart';
 import 'package:storeapp/services/Firebase/getUserData.dart';
@@ -193,29 +193,35 @@ class _OrderScreenState extends State<OrderScreen> {
     );
   }
 
-  void updateItemQuantity(MyCartItems item, int newQuantity) async {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user == null) return;
+ void updateItemQuantity(MyCartItems item, int newQuantity) async {
+  final user = FirebaseAuth.instance.currentUser;
+  if (user == null) return;
 
-    final cartCollection = FirebaseFirestore.instance
-        .collection("Authentication")
-        .doc(user.uid)
-        .collection("Cart");
+  final cartCollection = FirebaseFirestore.instance
+      .collection("Authentication")
+      .doc(user.uid)
+      .collection("Cart");
 
-    final querySnapshot =
-        await cartCollection.where("name", isEqualTo: item.name).limit(1).get();
+  final querySnapshot =
+      await cartCollection.where("name", isEqualTo: item.name).limit(1).get();
 
-    if (querySnapshot.docs.isNotEmpty) {
-      final docId = querySnapshot.docs.first.id;
-      await cartCollection.doc(docId).update({"quantity": newQuantity});
-      print("🔄 Updated quantity in Firestore: $newQuantity");
+  if (querySnapshot.docs.isNotEmpty) {
+    final docId = querySnapshot.docs.first.id;
+    await cartCollection.doc(docId).update({"quantity": newQuantity});
 
+    // ✅ تحديث العنصر محليًا
+    int index = cartItems.indexWhere((cartItem) => cartItem.name == item.name);
+    if (index != -1) {
       setState(() {
-        item.quantity = newQuantity;
-        print("🛒 Updated quantity in UI: ${item.quantity}");
+        cartItems[index].quantity = newQuantity;
       });
     }
+
+    print("🔄 Updated quantity locally and in Firestore: $newQuantity");
   }
+}
+
+
 
   Widget buildSizeChoose() {
     return Container(

@@ -1,4 +1,7 @@
-// ignore_for_file: file_names
+// ignore_for_file: avoid_print
+
+import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -8,8 +11,19 @@ import 'package:storeapp/Widgets/ItemsProfile.dart';
 import 'package:storeapp/data/constant.dart';
 import 'package:storeapp/services/Firebase/getUserData.dart';
 
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   const Profile({super.key});
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  @override
+  void initState() {
+    super.initState();
+    setState(() {}); // تحميل البيانات عند فتح الشاشة
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,15 +33,6 @@ class Profile extends StatelessWidget {
       backgroundColor: backgroundColor,
       appBar: AppBar(
         backgroundColor: backgroundColor,
-        // leading: IconButton(
-        //   onPressed: () {
-        //     Navigator.pop(context);
-        //   },
-        //   icon: Icon(
-        //     LineAwesomeIcons.angle_left_solid,
-        //     color: textIconColor,
-        //   ),
-        // ),
         title: Text(
           "Profile",
           style: TextStyle(
@@ -55,11 +60,19 @@ class Profile extends StatelessWidget {
           } else if (snapshot.hasData && snapshot.data != null) {
             var userData = snapshot.data!;
             String username = userData['username'] ?? 'N/A';
-            // ignore: unused_local_variable
             String phone = userData['phoneNumber'] ?? 'N/A';
             String email = userData['email'] ?? 'N/A';
-            String profileImage = userData['profileImage'] ?? '';
-            emailControler.text = email;
+            String profileImageBase64 = userData['img'] ?? '';
+
+            Uint8List? imageBytes;
+            try {
+              if (profileImageBase64.isNotEmpty) {
+                imageBytes = base64Decode(profileImageBase64);
+              }
+            } catch (e) {
+              print("Error decoding base64 image: $e");
+            }
+
             return SingleChildScrollView(
               child: Container(
                 padding: const EdgeInsets.all(15),
@@ -72,8 +85,11 @@ class Profile extends StatelessWidget {
                           height: 120,
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(100),
-                            child: profileImage.isNotEmpty
-                                ? Image.asset(profileImage, fit: BoxFit.cover)
+                            child: imageBytes != null
+                                ? Image.memory(
+                                    imageBytes,
+                                    fit: BoxFit.cover,
+                                  )
                                 : const Icon(
                                     Icons.person,
                                     size: 100,
@@ -81,23 +97,6 @@ class Profile extends StatelessWidget {
                                   ),
                           ),
                         ),
-                        // Positioned(
-                        //   bottom: 0,
-                        //   right: 0,
-                        //   child: Container(
-                        //     width: 35,
-                        //     height: 35,
-                        //     decoration: BoxDecoration(
-                        //       borderRadius: BorderRadius.circular(100),
-                        //       color: ContaierColor,
-                        //     ),
-                        //     child: Icon(
-                        //       LineAwesomeIcons.pencil_alt_solid,
-                        //       size: 20,
-                        //       color: TextIconColor,
-                        //     ),
-                        //   ),
-                        // )
                       ],
                     ),
                     const SizedBox(height: 10),
@@ -125,13 +124,14 @@ class Profile extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => EditProfile(
-                                    img: profileImage,
+                                    img: profileImageBase64,
                                     email: email,
+                                    phoneNumber: phone,
+                                    username: username,
                                   )));
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: ContaierColor,
-                          side: BorderSide.none,
                           shape: const StadiumBorder(),
                         ),
                         child: Text(

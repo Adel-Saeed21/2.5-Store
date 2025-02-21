@@ -1,8 +1,6 @@
 // ignore:
 // ignore_for_file: file_names
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marquee/marquee.dart';
@@ -44,7 +42,7 @@ class _ItemdetailsState extends State<Itemdetails> {
 
     List<String> sizes = ["M", "L", "XL"];
     imgSelect = widget.imageess;
-    final User? user = FirebaseAuth.instance.currentUser;
+    
 
     return BlocConsumer<Cubitrun, cubitState>(
         // ignore: avoid_types_as_parameter_names, non_constant_identifier_names

@@ -56,6 +56,7 @@ class _SearchpageState extends State<Searchpage> {
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
+        leading: Icon(Icons.ac_unit,color: backgroundColor,),
         backgroundColor: backgroundColor,
         title: Text(
           "Search",

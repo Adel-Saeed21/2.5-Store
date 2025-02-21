@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, avoid_print, duplicate_ignore
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -35,6 +35,7 @@ void fetchAndDisplayUserData() async {
     tprofileHeading = userData['username'];
     tProfilePicture = userData['profileImage'];
   } else {
+    // ignore: duplicate_ignore
     // ignore: avoid_print
     print('Failed to fetch user data.');
   }

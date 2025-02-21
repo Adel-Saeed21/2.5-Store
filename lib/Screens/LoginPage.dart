@@ -140,7 +140,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   await SharedPreferences.getInstance();
                               await prefs.setBool('isLoggedIn', true);
                               await prefs.setString('userEmail', email!);
-                              Navigator.pushNamed(
+                              Navigator.pushReplacementNamed(
                                   // ignore: use_build_context_synchronously
                                   context, "NavigationbarStatus",
                                   arguments: email);

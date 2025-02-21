@@ -2,6 +2,8 @@
 
 import 'dart:io';
 
+import 'package:storeapp/data/DataUse.dart';
+
 abstract class cubitState {}
 
 class TshirtChange extends cubitState {}
@@ -24,4 +26,20 @@ class ImageError extends cubitState {
 class CartIncrement extends cubitState{
   
 }
+class CartInitial extends cubitState {}
+
+class CartLoading extends cubitState {}
+
+class CartLoaded extends cubitState {
+  final List<MyCartItems> cartItems;
+
+  CartLoaded(this.cartItems);
+}
+
+class CartError extends cubitState {
+  final String message;
+
+  CartError(this.message);
+}
+
 

@@ -1,7 +1,10 @@
 // ignore_for_file: file_names
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:storeapp/cubit/cubitState.dart';
+import 'package:storeapp/data/DataUse.dart';
 
 class Cubitrun extends Cubit<cubitState> {
   Cubitrun() : super(TshirtChange());
@@ -65,6 +68,72 @@ class Cubitrun extends Cubit<cubitState> {
       if (sizeIncreament > 1) {
         sizeIncreament--;
         emit(CartIncrement());
+      }
+    }
+  }
+
+  Future<void> loadCartItems() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final snapshot = await FirebaseFirestore.instance
+        .collection("Authentication")
+        .doc(user.uid)
+        .collection("Cart")
+        .orderBy("timestamp", descending: true)
+        .get();
+
+    final cartItems = snapshot.docs.map((doc) {
+      final data = doc.data();
+      return MyCartItems(
+        data["img"] ?? "",
+        data["hasOffer"] ?? false,
+        data["name"] ?? "Unknown",
+        (data["price"] ?? 0).toDouble(),
+        (data["sale"] ?? 0).toDouble(),
+        true,
+        data["quantity"] ?? 1,
+      );
+    }).toList();
+
+    emit(cartItems as cubitState);
+  }
+
+  Future<void> updateItemQuantity(MyCartItems item, int newQuantity) async {
+    if (newQuantity < 1) return;
+
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final cartCollection = FirebaseFirestore.instance
+        .collection("Authentication")
+        .doc(user.uid)
+        .collection("Cart");
+
+    final querySnapshot =
+        await cartCollection.where("name", isEqualTo: item.name).limit(1).get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      final docId = querySnapshot.docs.first.id;
+      await cartCollection.doc(docId).update({"quantity": newQuantity});
+
+      if (state is CartLoaded) {
+        final updatedCart = (state as CartLoaded).cartItems.map((cartItem) {
+          if (cartItem.name == item.name) {
+            return MyCartItems(
+              cartItem.img,
+              cartItem.hasOffer,
+              cartItem.name,
+              cartItem.price,
+              cartItem.sale,
+              true,
+              newQuantity,
+            );
+          }
+          return cartItem;
+        }).toList();
+
+        emit(CartLoaded(updatedCart)); // ✅ تحديث الحالة وإعادة بناء الواجهة
       }
     }
   }
