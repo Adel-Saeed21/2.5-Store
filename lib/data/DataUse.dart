@@ -8,12 +8,14 @@ class Searchdata {
 }
 
 class MyCartItems {
-  String name;
-  double price;
-  double sale;
-  bool hasOffer;
-  bool isClothes;
-  String Img;
-  MyCartItems(this.Img, this.isClothes, this.name, this.price, this.sale,
-      this.hasOffer);
+  final String img;
+  final bool hasOffer;
+  final String name;
+  final double price;
+  final double sale;
+  final bool available;
+  int quantity; // ✨ إضافة عدد العناصر لكل منتج
+
+  MyCartItems(this.img, this.hasOffer, this.name, this.price, this.sale,
+      this.available, this.quantity);
 }

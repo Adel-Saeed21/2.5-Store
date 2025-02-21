@@ -66,10 +66,9 @@ class _EditProfileState extends State<EditProfile> {
                       radius: 75,
                       backgroundColor: ContaierColor,
                       backgroundImage: file != null
-                          ? FileImage(file!) 
+                          ? FileImage(file!)
                           : (widget.img != null && widget.img!.isNotEmpty)
-                              ? NetworkImage(widget.img!)
-                                  as ImageProvider 
+                              ? NetworkImage(widget.img!) as ImageProvider
                               : null,
                       child: file == null &&
                               (widget.img == null || widget.img!.isEmpty)
@@ -110,33 +109,6 @@ class _EditProfileState extends State<EditProfile> {
                         validator: (value) =>
                             value!.isEmpty ? "Can't be empty" : null,
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: DynamicTextField(
-                              label: "Gender",
-                              keyboardType: TextInputType.text,
-                              validator: (value) {
-                                if (value != null && value.isNotEmpty) {
-                                  final lowerValue = value.toLowerCase();
-                                  if (lowerValue != "male" &&
-                                      lowerValue != "female") {
-                                    return "Gender must be Male or Female";
-                                  }
-                                }
-                                return null;
-                              },
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          const Expanded(
-                            child: DynamicTextField(
-                              label: "Birthday",
-                              keyboardType: TextInputType.datetime,
-                            ),
-                          ),
-                        ],
-                      ),
                       DynamicTextField(
                         label: "Phone Number",
                         keyboardType: TextInputType.phone,
@@ -148,16 +120,14 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 const SizedBox(height: 20),
                 SizedBox(
-                  width: 200,
+                  width: 150,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       backgroundColor: ContaierColor,
                       shape: const StadiumBorder(),
                     ),
-                    onPressed: () {
-                      
-                    },
-                    child: const Text("Edit Profile",
+                    onPressed: () {},
+                    child: const Text("Save",
                         style: TextStyle(color: Colors.white)),
                   ),
                 ),

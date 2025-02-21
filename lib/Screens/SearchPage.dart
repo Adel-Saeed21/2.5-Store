@@ -14,24 +14,40 @@ class Searchpage extends StatefulWidget {
 
 class _SearchpageState extends State<Searchpage> {
   bool isSearching = false;
-  List<String> chipLabels = ["Alahly", "smart watch", "Arsenal", "sweatshirt"];
-
+  final List<String> chipLabels = [
+    "Alahly",
+    "smart watch",
+    "Arsenal",
+    "sweatshirt"
+  ];
   final TextEditingController searchController = TextEditingController();
   Timer? _debounce;
+  final ValueNotifier<List<dynamic>> searchedItemNotifier = ValueNotifier([]);
 
   @override
   void dispose() {
     searchController.dispose();
     _debounce?.cancel();
+    searchedItemNotifier.dispose();
     super.dispose();
   }
 
-  void addSearchForITemToSearchList(String searchedCharacter) {
-    setState(() {
-      searchedItem = popularItem
-          .where((element) =>
-              element.name.toLowerCase().startsWith(searchedCharacter))
-          .toList();
+  void addSearchForItem(String searchedCharacter) {
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+
+    _debounce = Timer(const Duration(milliseconds: 300), () {
+      List<dynamic> results = searchedCharacter.isEmpty
+          ? []
+          : popularItem
+              .where((item) => item.name
+                  .toLowerCase()
+                  .contains(searchedCharacter.toLowerCase()))
+              .toList();
+
+      searchedItemNotifier.value = results;
+      setState(() {
+        isSearching = searchedCharacter.isNotEmpty;
+      });
     });
   }
 
@@ -48,35 +64,16 @@ class _SearchpageState extends State<Searchpage> {
         centerTitle: true,
       ),
       body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.only(right: 8, left: 8),
+        child: Column(
           children: [
             buildSearchField(),
-            const SizedBox(height: 15),
-            Text(
-              "Popular Search",
-              style: TextStyle(
-                color: textIconColor,
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
+            Expanded(
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child:
+                    isSearching ? buildSearchResults() : buildPopularContent(),
               ),
             ),
-            const SizedBox(
-              height: 15,
-            ),
-            buildChipList(),
-            const SizedBox(
-              height: 20,
-            ),
-            Text(
-              "Popular Item",
-              style: TextStyle(
-                color: textIconColor,
-                fontSize: 22,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            buildSearchResults(),
           ],
         ),
       ),
@@ -85,19 +82,13 @@ class _SearchpageState extends State<Searchpage> {
 
   Widget buildSearchField() {
     return TextField(
-      onChanged: (value) {
-        if (_debounce?.isActive ?? false) _debounce!.cancel();
-        _debounce = Timer(const Duration(milliseconds: 500), () {
-          addSearchForITemToSearchList(value);
-        });
-      },
+      onChanged: addSearchForItem,
       cursorColor: Colors.white,
       controller: searchController,
       style: TextStyle(color: textIconColor),
       decoration: InputDecoration(
         filled: true,
-        // ignore: deprecated_member_use
-        fillColor: ContaierColor.withOpacity(0.2),
+        fillColor: ContaierColor,
         prefixIcon: Icon(Icons.search, color: textIconColor),
         suffixIcon: IconButton(
           icon: Icon(FontAwesomeIcons.listCheck, color: textIconColor),
@@ -121,6 +112,43 @@ class _SearchpageState extends State<Searchpage> {
     );
   }
 
+  Widget buildPopularContent() {
+    return ListView(
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      children: [
+        const SizedBox(height: 15),
+        Text("Popular Search",
+            style: TextStyle(
+                color: textIconColor,
+                fontSize: 22,
+                fontWeight: FontWeight.bold)),
+        const SizedBox(height: 15),
+        buildChipList(),
+        const SizedBox(height: 20),
+        Text("Popular Item",
+            style: TextStyle(
+                color: textIconColor,
+                fontSize: 22,
+                fontWeight: FontWeight.bold)),
+        const SizedBox(height: 15),
+        SizedBox(
+          height: 400,
+          child: GridView.builder(
+            cacheExtent: 1000, // Preload items for smoother performance
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 2,
+              crossAxisSpacing: 2,
+            ),
+            itemCount: 4,
+            itemBuilder: (context, i) => Productoutapi(
+                name: popularItem[i].name, img: popularItem[i].img),
+          ),
+        )
+      ],
+    );
+  }
+
   Widget buildChipList() {
     return Wrap(
       spacing: 8.0,
@@ -140,8 +168,7 @@ class _SearchpageState extends State<Searchpage> {
                 });
               },
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
+                  borderRadius: BorderRadius.circular(16)),
               backgroundColor: Colors.grey[300],
             ),
           )
@@ -150,25 +177,23 @@ class _SearchpageState extends State<Searchpage> {
   }
 
   Widget buildSearchResults() {
-    return SizedBox(
-      height: 400,
-      width: double.infinity,
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 2,
-          crossAxisSpacing: 2,
-        ),
-        itemCount: searchController.text.isEmpty ? 4 : searchedItem.length,
-        itemBuilder: (context, i) => Productoutapi(
-          name: searchController.text.isEmpty
-              ? popularItem[i].name
-              : searchedItem[i].name,
-          img: searchController.text.isEmpty
-              ? popularItem[i].img
-              : searchedItem[i].img,
-        ),
-      ),
+    return ValueListenableBuilder<List<dynamic>>(
+      valueListenable: searchedItemNotifier,
+      builder: (context, searchedItem, child) {
+        return GridView.builder(
+          cacheExtent: 1000, // Preload for smoother scrolling
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 2,
+            crossAxisSpacing: 2,
+          ),
+          itemCount: searchedItem.length,
+          itemBuilder: (context, i) => Productoutapi(
+            name: searchedItem[i].name,
+            img: searchedItem[i].img,
+          ),
+        );
+      },
     );
   }
 }

@@ -15,7 +15,7 @@ class Cubitrun extends Cubit<cubitState> {
   int sizeIncreament = 1;
 
   String imageGalary = "";
-  bool IsBooked = false;
+  bool isBooked = false;
   bool isPasswordValid = false;
   void changeImage(String x) {
     imageChose = x;
@@ -36,7 +36,7 @@ class Cubitrun extends Cubit<cubitState> {
   }
 
   void DetailsBookButton() {
-    IsBooked = !IsBooked;
+    isBooked = !isBooked;
     emit(BookedState());
   }
 

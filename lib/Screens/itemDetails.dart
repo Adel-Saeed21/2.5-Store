@@ -1,6 +1,8 @@
 // ignore:
 // ignore_for_file: file_names
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:marquee/marquee.dart';
@@ -11,10 +13,11 @@ import 'package:storeapp/data/DataUse.dart';
 
 import 'package:storeapp/data/constant.dart';
 import 'package:storeapp/helper/SnaceBar.dart';
+import 'package:storeapp/services/Firebase/getUserData.dart';
 
 // ignore: must_be_immutable
-class Itemdetails extends StatelessWidget {
-  Itemdetails(
+class Itemdetails extends StatefulWidget {
+  const Itemdetails(
       {super.key,
       required this.detials,
       required this.imageess,
@@ -24,15 +27,25 @@ class Itemdetails extends StatelessWidget {
 
   final List detials;
   final String imageess;
-  String imgSelect = "";
   final String names;
   final double price;
   final double sale;
 
   @override
+  State<Itemdetails> createState() => _ItemdetailsState();
+}
+
+class _ItemdetailsState extends State<Itemdetails> {
+  String imgSelect = "";
+
+  @override
   Widget build(BuildContext context) {
-    BlocProvider.of<Cubitrun>(context).changeImage(imageess);
+    BlocProvider.of<Cubitrun>(context).changeImage(widget.imageess);
+
     List<String> sizes = ["M", "L", "XL"];
+    imgSelect = widget.imageess;
+    final User? user = FirebaseAuth.instance.currentUser;
+
     return BlocConsumer<Cubitrun, cubitState>(
         // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
         builder: (context, State) {
@@ -45,7 +58,7 @@ class Itemdetails extends StatelessWidget {
                     BlocProvider.of<Cubitrun>(context).state1 = false;
                     BlocProvider.of<Cubitrun>(context).state2 = false;
                     BlocProvider.of<Cubitrun>(context).state3 = false;
-                    BlocProvider.of<Cubitrun>(context).IsBooked = false;
+                    BlocProvider.of<Cubitrun>(context).isBooked = false;
                   },
                   icon: Icon(
                     Icons.arrow_back_ios_new,
@@ -126,15 +139,15 @@ class Itemdetails extends StatelessWidget {
                   height: 10,
                 ),
                 Row(
-                  children: List.generate(detials.length, (index) {
+                  children: List.generate(widget.detials.length, (index) {
                     return ColorTshirtContainer(
-                      imageName: detials[index],
+                      imageName: widget.detials[index],
                       onpressed: () {
                         BlocProvider.of<Cubitrun>(context)
                             .changeContainerColor(index + 1);
                         BlocProvider.of<Cubitrun>(context)
-                            .changeImage(detials[index]);
-                        imgSelect = detials[index];
+                            .changeImage(widget.detials[index]);
+                        imgSelect = widget.detials[index];
                       },
                       changecolor: BlocProvider.of<Cubitrun>(context)
                           .getStateByIndex(index + 1),
@@ -167,24 +180,27 @@ class Itemdetails extends StatelessWidget {
                           width: 150,
                           height: 40,
                           child: TextButton(
-                              onPressed: () {
-                                // BlocProvider.of<Cubitrun>(context)
-                                //     .DetailsBookButton();
-                                ShowMessage(context, "Check item list");
-                                myCartItem.add(
-                                  MyCartItems(imgSelect, true, names, price,
-                                      sale, true),
-                                );
-                              },
-                              child: Text(
-                                BlocProvider.of<Cubitrun>(context).IsBooked
-                                    ? "Add to card"
-                                    : "Add to card",
-                                style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w600,
-                                    color: textIconColor),
-                              ))),
+                            onPressed: () async {
+                              ShowMessage(context, "Item added to cart");
+
+                              await addToCart(MyCartItems(
+                                  imgSelect,
+                                  true,
+                                  widget.names,
+                                  widget.price,
+                                  widget.sale,
+                                  true,1));
+
+                              setState(() {}); // إعادة تحميل الشاشة بعد الإضافة
+                            },
+                            child: Text(
+                              "Add to Cart",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w600,
+                                  color: textIconColor),
+                            ),
+                          )),
                     ),
                     const SizedBox(
                       width: 20,
@@ -246,21 +262,3 @@ class OutButtonSize extends StatelessWidget {
     );
   }
 }
-
-
- // SizedBox(
-                    //   width: 250,
-                    //   height: 70,
-
-                    //   // child: ListView.builder(
-                    //   //     scrollDirection: Axis.horizontal,
-                    //   //     itemCount: alahly.length,
-                    //   //     itemBuilder: (context, i) => ColorTshirtContainer(
-                    //   //          changecolor: BlocProvider.of<Cubitrun>(context).state1,
-                    //   //           imageName: AhlyList[i],
-                    //   //           onpressed: () {
-                    //   //             BlocProvider.of<Cubitrun>(context)
-                    //   //                 .changeImage(AhlyList[i]);
-                    //   //           },
-                    //   //         )),
-                    // ),
