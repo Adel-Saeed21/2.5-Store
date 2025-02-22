@@ -29,7 +29,7 @@ class _StartScreenState extends State<StartScreen> {
             // ignore: avoid_unnecessary_containers
             Container(
               child: Image.asset(
-                "images/Picsart_25-02-05_13-49-09-890.png",
+                "images/Screenshot_2025-02-22_222319-removebg-preview.png",
                 height: MediaQuery.sizeOf(context).height - 400,
                 width: MediaQuery.sizeOf(context).width - 30,
               ),
@@ -43,7 +43,7 @@ class _StartScreenState extends State<StartScreen> {
               child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                       side: BorderSide(
-                        color: textIconColor,
+                        color: ContaierColor,
                         width: 2,
                       ),
                       padding: const EdgeInsets.symmetric(
@@ -67,15 +67,16 @@ class _StartScreenState extends State<StartScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               child: MaterialButton(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 onPressed: () {
                   Navigator.pushNamed(context, "Signup");
                 },
-                color: textIconColor,
+                color: ContaierColor,
                 child: Text(
                   "Sign Up",
                   style: TextStyle(
-                      color: ContaierColor,
+                      color: textIconColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 15),
                 ),

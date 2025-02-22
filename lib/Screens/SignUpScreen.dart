@@ -22,6 +22,27 @@ class Signupscreen extends StatefulWidget {
 
 class _SignupscreenState extends State<Signupscreen> {
   GlobalKey<FormState> formstate1 = GlobalKey();
+String? validatePassword(String? value) {
+  if (value == null || value.isEmpty) {
+    return 'Password is required';
+  } 
+  if (value.length < 8) {
+    return 'Password must be at least 8 characters long';
+  }
+  if (RegExp(r'[A-Z]').allMatches(value).length < 2) {
+    return 'Password must contain at least two uppercase letters';
+  }
+  if (RegExp(r'[a-z]').allMatches(value).length < 2) {
+    return 'Password must contain at least two lowercase letters';
+  }
+  if (RegExp(r'\d').allMatches(value).length < 3) {
+    return 'Password must contain at least three digits';
+  }
+  if (RegExp(r'[@$!%*?&]').allMatches(value).isEmpty) {
+    return 'Password must contain at least one special character (@, \$, !, %, *, ?, &)';
+  }
+  return null;
+}
 
   String? email, password, username;
   bool isloading = false;
@@ -134,15 +155,7 @@ class _SignupscreenState extends State<Signupscreen> {
                                   Icons.lock,
                                   color: ContaierColor,
                                 ),
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return 'Email is required';
-                                  } else if (!RegExp(r'^[^@]+@[^@]+\.[^@]+')
-                                      .hasMatch(value)) {
-                                    return 'Enter a valid email';
-                                  }
-                                  return null;
-                                },
+                                validator: validatePassword,
                                 iconData: Icons.visibility,
                               ),
                               const SizedBox(

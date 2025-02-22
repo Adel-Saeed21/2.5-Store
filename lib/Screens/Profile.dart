@@ -22,7 +22,7 @@ class _ProfileState extends State<Profile> {
   @override
   void initState() {
     super.initState();
-    setState(() {}); // تحميل البيانات عند فتح الشاشة
+    setState(() {});
   }
 
   @override
@@ -42,6 +42,14 @@ class _ProfileState extends State<Profile> {
           ),
         ),
         centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: textIconColor,
+            )),
         actions: [
           IconButton(
             onPressed: () {},
@@ -122,13 +130,21 @@ class _ProfileState extends State<Profile> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
+                          Navigator.of(context)
+                              .push(
+                            MaterialPageRoute(
                               builder: (context) => EditProfile(
-                                    img: profileImageBase64,
-                                    email: email,
-                                    phoneNumber: phone,
-                                    username: username,
-                                  )));
+                                img: profileImageBase64,
+                                email: email,
+                                phoneNumber: phone,
+                                username: username,
+                              ),
+                            ),
+                          )
+                              .then((_) {
+                            // يتم استدعاء setState لإعادة بناء الشاشة عند العودة
+                            setState(() {});
+                          });
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: ContaierColor,

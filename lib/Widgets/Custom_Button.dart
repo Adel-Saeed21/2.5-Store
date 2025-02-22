@@ -16,7 +16,7 @@ class Custom_Button extends StatelessWidget {
     return Container(
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-            color: maincolor, borderRadius: BorderRadius.circular(20)),
+            color: ContaierColor, borderRadius: BorderRadius.circular(20)),
         child: TextButton(
             onPressed: onPress,
             child: Text(

@@ -5,7 +5,7 @@ import 'package:storeapp/data/Images.dart';
 import 'package:storeapp/data/DataUse.dart';
 
 //0xffECDFCC
-Color maincolor = const Color(0xff3A3960);
+Color maincolor = const Color(0xff2C3E50);
 Color secondcolor = Colors.white;
 Color iconColor = const Color(0xffffffff);
 Color backColor = const Color(0xff5E686D);
