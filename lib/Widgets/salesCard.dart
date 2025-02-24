@@ -12,12 +12,14 @@ class SalesCard extends StatelessWidget {
     required this.imagess,
     required this.nameofobj,
     required this.details,
+    this.id
   });
   final double prince;
   final double sales;
   final String imagess;
   final String nameofobj;
   final List<String> details;
+  final int? id;
 
   @override
   Widget build(BuildContext context) {

@@ -26,19 +26,20 @@ List<SalesCard> salescards = [
     imagess: "images/shirt_sports/Picsart_25-01-01_16-08-03-905.png",
     nameofobj: "Alahly Tshirt",
     details: ahlyList,
+    id: 1,
   ),
   SalesCard(
       details: arsenalList,
       prince: 250,
       sales: 100,
       imagess: "images/shirt_sports/Picsart_25-01-01_16-09-23-321.png",
-      nameofobj: "Arsenal Tshirt"),
+      nameofobj: "Arsenal Tshirt",id: 2,),
   SalesCard(
       details: RealmadridImage,
       prince: 250,
       sales: 100,
       imagess: "images/shirt_sports/Picsart_25-01-01_16-10-06-335.png",
-      nameofobj: "Real Tshirt"),
+      nameofobj: "Real Tshirt",id: 3,),
 ];
 
 // ignore: non_constant_identifier_names

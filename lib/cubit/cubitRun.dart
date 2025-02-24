@@ -93,13 +93,14 @@ class Cubitrun extends Cubit<cubitState> {
         (data["sale"] ?? 0).toDouble(),
         true,
         data["quantity"] ?? 1,
+        
       );
     }).toList();
 
     emit(cartItems as cubitState);
   }
 
-  Future<void> updateItemQuantity(MyCartItems item, int newQuantity) async {
+  Future<void> updateItemQuantity(MyCartItems item, int newQuantity,int id) async {
     if (newQuantity < 1) return;
 
     final user = FirebaseAuth.instance.currentUser;
@@ -128,6 +129,8 @@ class Cubitrun extends Cubit<cubitState> {
               cartItem.sale,
               true,
               newQuantity,
+              id
+              
             );
           }
           return cartItem;

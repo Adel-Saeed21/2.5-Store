@@ -21,13 +21,14 @@ class Itemdetails extends StatefulWidget {
       required this.imageess,
       required this.names,
       required this.price,
-      required this.sale});
+      required this.sale,this.Id});
 
   final List detials;
   final String imageess;
   final String names;
   final double price;
   final double sale;
+  final int? Id;
 
   @override
   State<Itemdetails> createState() => _ItemdetailsState();
@@ -42,7 +43,6 @@ class _ItemdetailsState extends State<Itemdetails> {
 
     List<String> sizes = ["M", "L", "XL"];
     imgSelect = widget.imageess;
-    
 
     return BlocConsumer<Cubitrun, cubitState>(
         // ignore: avoid_types_as_parameter_names, non_constant_identifier_names
@@ -182,12 +182,14 @@ class _ItemdetailsState extends State<Itemdetails> {
                               ShowMessage(context, "Item added to cart");
 
                               await addToCart(MyCartItems(
-                                  imgSelect,
-                                  true,
-                                  widget.names,
-                                  widget.price,
-                                  widget.sale,
-                                  true,1));
+                                imgSelect,
+                                true,
+                                widget.names,
+                                widget.price,
+                                widget.sale,
+                                true,
+                                1,
+                              ));
 
                               setState(() {}); // إعادة تحميل الشاشة بعد الإضافة
                             },

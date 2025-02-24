@@ -70,49 +70,85 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   Widget buildFinalUI() {
-    return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance
-          .collection("Authentication")
-          .doc(FirebaseAuth.instance.currentUser?.uid)
-          .collection("Cart")
-          .orderBy("timestamp", descending: true)
-          .snapshots(),
-      builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return Center(child: Text("❌ Error: ${snapshot.error}"));
-        }
+  return StreamBuilder<QuerySnapshot>(
+    stream: FirebaseFirestore.instance
+        .collection("Authentication")
+        .doc(FirebaseAuth.instance.currentUser?.uid)
+        .collection("Cart")
+        .orderBy("timestamp", descending: true)
+        .snapshots(),
+    builder: (context, snapshot) {
+      if (snapshot.hasError) {
+        return Center(child: Text(" Error: ${snapshot.error}"));
+      }
 
-        if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return const Center(child: Text("🛒 No items in cart"));
-        }
+      if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+        return const Center(child: Text("🛒 No items in cart"));
+      }
 
-        print("🔥 Received cart items: ${snapshot.data!.docs.length}");
+      print(" Received cart items: ${snapshot.data!.docs.length}");
 
-        List<MyCartItems> cartItems = snapshot.data!.docs.map((doc) {
-          final data = doc.data() as Map<String, dynamic>;
+      List<MyCartItems> cartItems = snapshot.data!.docs.map((doc) {
+        final data = doc.data() as Map<String, dynamic>;
 
-          print("🛒 Adding to cart: ${data["name"]}, Price: ${data["price"]}");
+        print(" Adding to cart: ${data["name"]}, Price: ${data["price"]}");
 
-          return MyCartItems(
-            data["img"] ?? "",
-            data["hasOffer"] ?? false,
-            data["name"] ?? "Unknown",
-            (data["price"] ?? 0).toDouble(),
-            (data["sale"] ?? 0).toDouble(),
-            true,
-            data["quantity"] ?? 1,
-          );
-        }).toList();
-
-        return ListView.builder(
-          itemCount: cartItems.length,
-          itemBuilder: (context, index) {
-            return itemAddFromDetails(cartItems[index]);
-          },
+        return MyCartItems(
+          data["img"] ?? "",
+          data["hasOffer"] ?? false,
+          data["name"] ?? "Unknown",
+          (data["price"] ?? 0).toDouble(),
+          (data["sale"] ?? 0).toDouble(),
+          true,
+          data["quantity"] ?? 1,
         );
-      },
-    );
+      }).toList();
+
+      return ListView.builder(
+        itemCount: cartItems.length,
+        itemBuilder: (context, index) {
+          return Dismissible(
+            key: Key(cartItems[index].name), // يجب أن يكون لكل عنصر مفتاح فريد
+            direction: DismissDirection.endToStart, // تحديد الاتجاه من اليمين لليسار للسحب
+            onDismissed: (direction) async {
+              // حذف العنصر من Firestore
+              await deleteItemFromCart(cartItems[index]);
+              setState(() {
+                cartItems.removeAt(index); // إزالة العنصر من القائمة المحلية
+              });
+            },
+            background: Container(
+              color: Colors.red, // اللون الخلفي عند السحب
+              alignment: Alignment.centerRight,
+              child: const Icon(Icons.delete, color: Colors.white),
+            ),
+            child: itemAddFromDetails(cartItems[index]),
+          );
+        },
+      );
+    },
+  );
+}
+
+Future<void> deleteItemFromCart(MyCartItems item) async {
+  final user = FirebaseAuth.instance.currentUser;
+  if (user == null) return;
+
+  final cartCollection = FirebaseFirestore.instance
+      .collection("Authentication")
+      .doc(user.uid)
+      .collection("Cart");
+
+  final querySnapshot =
+      await cartCollection.where("name", isEqualTo: item.name).limit(1).get();
+
+  if (querySnapshot.docs.isNotEmpty) {
+    final docId = querySnapshot.docs.first.id;
+    await cartCollection.doc(docId).delete(); // حذ
+    print("Item deleted from cart in Firestore: ${item.name}");
   }
+}
+
 
   Widget itemAddFromDetails(MyCartItems item) {
     return Padding(
@@ -142,7 +178,7 @@ class _OrderScreenState extends State<OrderScreen> {
                   children: [
                     buildSizeChoose(),
                     NumberOfItem(item)
-                  ], // 👈 تمرير العنصر هنا
+                  ], 
                 ),
                 const SizedBox(height: 10),
                 Row(
@@ -209,7 +245,6 @@ class _OrderScreenState extends State<OrderScreen> {
     final docId = querySnapshot.docs.first.id;
     await cartCollection.doc(docId).update({"quantity": newQuantity});
 
-    // ✅ تحديث العنصر محليًا
     int index = cartItems.indexWhere((cartItem) => cartItem.name == item.name);
     if (index != -1) {
       setState(() {
@@ -217,7 +252,7 @@ class _OrderScreenState extends State<OrderScreen> {
       });
     }
 
-    print("🔄 Updated quantity locally and in Firestore: $newQuantity");
+    print("Updated quantity locally and in Firestore: $newQuantity");
   }
 }
 
