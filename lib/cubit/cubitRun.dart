@@ -129,14 +129,14 @@ class Cubitrun extends Cubit<cubitState> {
               cartItem.sale,
               true,
               newQuantity,
-              id
+              
               
             );
           }
           return cartItem;
         }).toList();
 
-        emit(CartLoaded(updatedCart)); // ✅ تحديث الحالة وإعادة بناء الواجهة
+        emit(CartLoaded(updatedCart)); 
       }
     }
   }

@@ -22,13 +22,13 @@ class _OrderScreenState extends State<OrderScreen> {
   @override
   void initState() {
     super.initState();
-    loadCartItems(); // تحميل البيانات عند فتح الشاشة
+    loadCartItems();
   }
 
   Future<void> loadCartItems() async {
-    List<MyCartItems> items = await fetchCartItems(); 
+    List<MyCartItems> items = await fetchCartItems();
     setState(() {
-      cartItems = items; 
+      cartItems = items;
     });
   }
 
@@ -52,15 +52,95 @@ class _OrderScreenState extends State<OrderScreen> {
           Expanded(
             child: cartItems.isEmpty
                 ? buildEmptyUI()
-                : Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 10),
-                    child: buildFinalUI(),
+                : Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 10),
+                        child: buildFinalUI(),
+                      ),
+                      CheckOut()
+                    ],
                   ),
           ),
         ],
       ),
     );
+  }
+
+  Widget CheckOut() {
+    if (cartItems.isEmpty) {
+      return Container();
+    } else {
+      return Container(
+          decoration: BoxDecoration(
+              color: ContaierColor,
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+          height: 100,
+          child: Row(
+            children: [
+              const SizedBox(
+                width: 30,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "TOTAL",
+                    style: TextStyle(
+                        color: Colors.grey.shade400,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15),
+                  ),
+                  Text(
+                    "\$900.43",
+                    style: TextStyle(
+                        color: textIconColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
+                  )
+                ],
+              ),
+              const SizedBox(
+                width: 60,
+              ),
+              ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white, // Button background color
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30), // Rounded edges
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20, vertical: 12), // Button size
+                  side: BorderSide(
+                      color: ContaierColor, width: 2), // Black border
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      "CHECK OUT",
+                      style: TextStyle(
+                        color: ContaierColor, // Black text
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(width: 8), // Spacing
+                    Icon(
+                      Icons.double_arrow, // ">>>" icon
+                      color: ContaierColor,
+                      size: 20,
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ));
+    }
   }
 
   Widget buildEmptyUI() {
@@ -70,85 +150,89 @@ class _OrderScreenState extends State<OrderScreen> {
   }
 
   Widget buildFinalUI() {
-  return StreamBuilder<QuerySnapshot>(
-    stream: FirebaseFirestore.instance
-        .collection("Authentication")
-        .doc(FirebaseAuth.instance.currentUser?.uid)
-        .collection("Cart")
-        .orderBy("timestamp", descending: true)
-        .snapshots(),
-    builder: (context, snapshot) {
-      if (snapshot.hasError) {
-        return Center(child: Text(" Error: ${snapshot.error}"));
-      }
+    return SizedBox(
+      height: MediaQuery.of(context).size.height - 300,
+      child: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection("Authentication")
+            .doc(FirebaseAuth.instance.currentUser?.uid)
+            .collection("Cart")
+            .orderBy("timestamp", descending: true)
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Center(child: Text(" Error: ${snapshot.error}"));
+          }
 
-      if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-        return const Center(child: Text("🛒 No items in cart"));
-      }
+          if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+            return Center(
+                child: Text(
+              "🛒 No items in cart",
+              style: TextStyle(color: ContaierColor),
+            ));
+          }
 
-      print(" Received cart items: ${snapshot.data!.docs.length}");
+          print(" Received cart items: ${snapshot.data!.docs.length}");
 
-      List<MyCartItems> cartItems = snapshot.data!.docs.map((doc) {
-        final data = doc.data() as Map<String, dynamic>;
+          List<MyCartItems> cartItems = snapshot.data!.docs.map((doc) {
+            final data = doc.data() as Map<String, dynamic>;
 
-        print(" Adding to cart: ${data["name"]}, Price: ${data["price"]}");
+            print(" Adding to cart: ${data["name"]}, Price: ${data["price"]}");
 
-        return MyCartItems(
-          data["img"] ?? "",
-          data["hasOffer"] ?? false,
-          data["name"] ?? "Unknown",
-          (data["price"] ?? 0).toDouble(),
-          (data["sale"] ?? 0).toDouble(),
-          true,
-          data["quantity"] ?? 1,
-        );
-      }).toList();
+            return MyCartItems(
+              data["img"] ?? "",
+              data["hasOffer"] ?? false,
+              data["name"] ?? "Unknown",
+              (data["price"] ?? 0).toDouble(),
+              (data["sale"] ?? 0).toDouble(),
+              true,
+              data["quantity"] ?? 1,
+            );
+          }).toList();
 
-      return ListView.builder(
-        itemCount: cartItems.length,
-        itemBuilder: (context, index) {
-          return Dismissible(
-            key: Key(cartItems[index].name), // يجب أن يكون لكل عنصر مفتاح فريد
-            direction: DismissDirection.endToStart, // تحديد الاتجاه من اليمين لليسار للسحب
-            onDismissed: (direction) async {
-              // حذف العنصر من Firestore
-              await deleteItemFromCart(cartItems[index]);
-              setState(() {
-                cartItems.removeAt(index); // إزالة العنصر من القائمة المحلية
-              });
+          return ListView.builder(
+            itemCount: cartItems.length,
+            itemBuilder: (context, index) {
+              return Dismissible(
+                key: Key(cartItems[index].name),
+                direction: DismissDirection.endToStart,
+                onDismissed: (direction) async {
+                  await deleteItemFromCart(cartItems[index]);
+                  setState(() {
+                    cartItems.removeAt(index);
+                  });
+                },
+                background: Container(
+                  color: ContaierColor,
+                  child: const Icon(Icons.delete, color: Colors.white),
+                ),
+                child: itemAddFromDetails(cartItems[index]),
+              );
             },
-            background: Container(
-              color: Colors.red, // اللون الخلفي عند السحب
-              alignment: Alignment.centerRight,
-              child: const Icon(Icons.delete, color: Colors.white),
-            ),
-            child: itemAddFromDetails(cartItems[index]),
           );
         },
-      );
-    },
-  );
-}
-
-Future<void> deleteItemFromCart(MyCartItems item) async {
-  final user = FirebaseAuth.instance.currentUser;
-  if (user == null) return;
-
-  final cartCollection = FirebaseFirestore.instance
-      .collection("Authentication")
-      .doc(user.uid)
-      .collection("Cart");
-
-  final querySnapshot =
-      await cartCollection.where("name", isEqualTo: item.name).limit(1).get();
-
-  if (querySnapshot.docs.isNotEmpty) {
-    final docId = querySnapshot.docs.first.id;
-    await cartCollection.doc(docId).delete(); // حذ
-    print("Item deleted from cart in Firestore: ${item.name}");
+      ),
+    );
   }
-}
 
+  Future<void> deleteItemFromCart(MyCartItems item) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
+
+    final cartCollection = FirebaseFirestore.instance
+        .collection("Authentication")
+        .doc(user.uid)
+        .collection("Cart");
+
+    final querySnapshot =
+        await cartCollection.where("name", isEqualTo: item.name).limit(1).get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      final docId = querySnapshot.docs.first.id;
+      await cartCollection.doc(docId).delete(); // حذ
+      print("Item deleted from cart in Firestore: ${item.name}");
+    }
+  }
 
   Widget itemAddFromDetails(MyCartItems item) {
     return Padding(
@@ -175,10 +259,7 @@ Future<void> deleteItemFromCart(MyCartItems item) async {
                       fontWeight: FontWeight.bold),
                 ),
                 Row(
-                  children: [
-                    buildSizeChoose(),
-                    NumberOfItem(item)
-                  ], 
+                  children: [buildSizeChoose(), NumberOfItem(item)],
                 ),
                 const SizedBox(height: 10),
                 Row(
@@ -229,34 +310,33 @@ Future<void> deleteItemFromCart(MyCartItems item) async {
     );
   }
 
- void updateItemQuantity(MyCartItems item, int newQuantity) async {
-  final user = FirebaseAuth.instance.currentUser;
-  if (user == null) return;
+  void updateItemQuantity(MyCartItems item, int newQuantity) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return;
 
-  final cartCollection = FirebaseFirestore.instance
-      .collection("Authentication")
-      .doc(user.uid)
-      .collection("Cart");
+    final cartCollection = FirebaseFirestore.instance
+        .collection("Authentication")
+        .doc(user.uid)
+        .collection("Cart");
 
-  final querySnapshot =
-      await cartCollection.where("name", isEqualTo: item.name).limit(1).get();
+    final querySnapshot =
+        await cartCollection.where("name", isEqualTo: item.name).limit(1).get();
 
-  if (querySnapshot.docs.isNotEmpty) {
-    final docId = querySnapshot.docs.first.id;
-    await cartCollection.doc(docId).update({"quantity": newQuantity});
+    if (querySnapshot.docs.isNotEmpty) {
+      final docId = querySnapshot.docs.first.id;
+      await cartCollection.doc(docId).update({"quantity": newQuantity});
 
-    int index = cartItems.indexWhere((cartItem) => cartItem.name == item.name);
-    if (index != -1) {
-      setState(() {
-        cartItems[index].quantity = newQuantity;
-      });
+      int index =
+          cartItems.indexWhere((cartItem) => cartItem.name == item.name);
+      if (index != -1) {
+        setState(() {
+          cartItems[index].quantity = newQuantity;
+        });
+      }
+
+      print("Updated quantity locally and in Firestore: $newQuantity");
     }
-
-    print("Updated quantity locally and in Firestore: $newQuantity");
   }
-}
-
-
 
   Widget buildSizeChoose() {
     return Container(

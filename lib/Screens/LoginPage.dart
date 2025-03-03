@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storeapp/Widgets/CustomTextField.dart';
@@ -61,6 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.pushReplacementNamed(context, "NavigationbarStatus", arguments: email);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password' || e.code == 'user-not-found') {
+        // ignore: use_build_context_synchronously
         showSnackbar(context, "Incorrect email or password");
       } else {
         showSnackbar(context, "Error: ${e.message}");
