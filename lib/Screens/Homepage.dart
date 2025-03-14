@@ -14,9 +14,14 @@ class Homepage extends StatefulWidget {
   State<Homepage> createState() => _HomepageState();
 }
 
-class _HomepageState extends State<Homepage> {
+class _HomepageState extends State<Homepage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
@@ -30,7 +35,7 @@ class _HomepageState extends State<Homepage> {
         actions: [
           IconButton(
               onPressed: () {
-                 Navigator.pushNamed(context, "Profile");
+                Navigator.pushNamed(context, "Profile");
               },
               icon: Icon(
                 Icons.person,

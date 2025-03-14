@@ -57,12 +57,14 @@ class _LoginScreenState extends State<LoginScreen> {
       SharedPreferences prefs = await SharedPreferences.getInstance();
       await prefs.setBool('isLoggedIn', true);
       await prefs.setString('userEmail', email!);
+      // ignore: use_build_context_synchronously
       Navigator.pushReplacementNamed(context, "NavigationbarStatus", arguments: email);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'wrong-password' || e.code == 'user-not-found') {
         // ignore: use_build_context_synchronously
         showSnackbar(context, "Incorrect email or password");
       } else {
+        // ignore: use_build_context_synchronously
         showSnackbar(context, "Error: ${e.message}");
       }
     } finally {

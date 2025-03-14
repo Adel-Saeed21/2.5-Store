@@ -12,7 +12,10 @@ class Searchpage extends StatefulWidget {
   State<Searchpage> createState() => _SearchpageState();
 }
 
-class _SearchpageState extends State<Searchpage> {
+class _SearchpageState extends State<Searchpage>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
   bool isSearching = false;
   final List<String> chipLabels = [
     "Alahly",
@@ -53,10 +56,14 @@ class _SearchpageState extends State<Searchpage> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       backgroundColor: backgroundColor,
       appBar: AppBar(
-        leading: Icon(Icons.ac_unit,color: backgroundColor,),
+        leading: Icon(
+          Icons.ac_unit,
+          color: backgroundColor,
+        ),
         backgroundColor: backgroundColor,
         title: Text(
           "Search",

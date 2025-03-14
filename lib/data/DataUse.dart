@@ -15,7 +15,6 @@ class MyCartItems {
   final double sale;
   final bool available;
   int quantity;
-   // ✨ إضافة عدد العناصر لكل منتج
 
   MyCartItems(this.img, this.hasOffer, this.name, this.price, this.sale,
       this.available, this.quantity,);

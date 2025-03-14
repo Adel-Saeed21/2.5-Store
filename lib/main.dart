@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:storeapp/Screens/Editprofile.dart';
+import 'package:storeapp/Screens/Favourite_screen.dart';
 import 'package:storeapp/Screens/LoginPage.dart';
 import 'package:storeapp/Screens/MoreItems.dart';
 import 'package:storeapp/Screens/NavigationBar.dart';
 import 'package:storeapp/Screens/Profile.dart';
 import 'package:storeapp/Screens/SignUpScreen.dart';
 import 'package:storeapp/Screens/StartScreen.dart';
-import 'package:storeapp/Screens/UpdateproductPage.dart';
 import 'package:storeapp/Screens/homePage.dart';
 import 'package:storeapp/Screens/order_Screen.dart';
 import 'package:storeapp/cubit/cubitRun.dart';
@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           routes: {
             'HomePage': (context) => const Homepage(),
-            'Updateproduct': (context) => const UpdateProductPage(),
+            'favo': (context) => const FavouriteScreen(),
             'NavigationbarStatus': (context) => const NavigationbarStatus(),
             'LoginScreen': (context) => const LoginScreen(),
             'startscreen': (context) => const StartScreen(),
